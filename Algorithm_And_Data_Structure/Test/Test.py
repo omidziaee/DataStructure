@@ -5,14 +5,18 @@ Created on Sep 5, 2018
 '''
 class Solution(object):
     def twoSum(self, nums, target):
-        if len(nums) <= 1:
-            return False
-        buff_dict = {}
-        for i in range(len(nums)):
-            if nums[i] in buff_dict:
-                return [buff_dict[nums[i]], i]
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        d = {}
+        
+        for key in range(len(nums)):
+            if nums[key] in d:
+                return [d[key], key]
             else:
-                buff_dict[target - nums[i]] = i
-                
-sol = Solution()
-print sol.twoSum([1, 2, 3, 5], 4)
+                d[target - nums[key]] = key
+                    
+sol = Solution()                   
+Temp = sol.twoSum([2,7,11,15], 9)
