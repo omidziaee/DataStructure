@@ -13,12 +13,12 @@ def recBinarySearch(arr, item):
         if arr[mid] == item:
             return True
         elif arr[mid] > item:
-            arr = arr[:mid + 1]
+            arr = arr[:mid]
             return recBinarySearch(arr, item)
         elif arr[mid] < item:
-            arr = arr[:mid]
+            arr = arr[mid:]
             return recBinarySearch(arr, item)
 
 
 arr = [1, 2, 3, 4, 5]
-print recBinarySearch(arr, 2)
+print recBinarySearch(arr, 1)
