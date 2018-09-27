@@ -10,22 +10,23 @@ class Solution(object):
         :rtype: List[int]
         """
         carryOver = 0
-        j = len(digits) - 1
+        digitLen = len(digits) - 1
         final = []
-        while j >= 0:
-            if j == len(digits) - 1:
-                result = digits[j] + 1
+        while digitLen >= 0:
+            if digitLen == len(digits) - 1:
+                result = digits[digitLen] + 1
             else:
-                result = digits[j] + carryOver
+                result = digits[digitLen] + carryOver    
+            carryOver = 0
             if result >= 10:
                 carryOver = 1
                 result %= 10
             final.insert(0, result)
-            j -= 1
-        if carryOver == 1 and result == 0:
+            digitLen -= 1
+        if carryOver == 1:
             final.insert(0, carryOver)
         return final
             
             
 sol = Solution()
-print sol.plusOne([1,2,9])
+print sol.plusOne([9,9,9])
