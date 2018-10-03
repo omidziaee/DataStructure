@@ -48,12 +48,29 @@ class Solution(object):
             k += 1
         return arr
     
-    def takeLastTwo(self, arr):
-        result = self.mergeSort(arr)
-        sumLastTwo = result[-2] + result[-4]
-        return sumLastTwo
+    def takeLastTwo(self, nums):
+        newArr = []
+        result = self.mergeSort(nums)
+        arrSize = len(nums) / 2
+        for i in range(arrSize):
+            #() is for function attributes [] is for list and array calls!! result(i-1) is wrong totally wrong!!
+            newArr.append((result[2 * i], result[2 * i + 1]))
+        l = [min(elem) for elem in newArr]
+        return sum(l)
+    
+    def arrayPairSum(self, nums):
+        # Sort the list
+        nums = sorted(nums)
+        # Create pairs
+        zipped = list(zip(nums[0::2], nums[1::2]))
+        # Find the pair with minimum
+        l = [min(tup) for tup in zipped]
+        # Find the sum
+        m = sum(l)
+        return m
         
         
         
 sol = Solution()
-print sol.takeLastTwo([2,4,112,6,300,400])
+print sol.takeLastTwo([9,1,5,6,7,2])
+print sol.arrayPairSum([9,1,5,6,7,2])

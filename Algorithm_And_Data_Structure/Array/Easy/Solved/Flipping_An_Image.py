@@ -24,4 +24,33 @@ Notes:
 
 1 <= A.length = A[0].length <= 20
 0 <= A[i][j] <= 1
+My solution: Two pointer for reversing each inner list
 '''
+class Solution(object):
+    def imageFlip(self, image):
+        for elem in image:
+            rightPointer = len(elem) - 1
+            leftPointer = 0
+            
+            while leftPointer < rightPointer:
+                # Swap Do not change the zeros and ones here it is fucking idiot idea as the middle one wont get cahnge!
+                temp = elem[rightPointer]
+                elem[rightPointer] = elem[leftPointer]
+                elem[leftPointer] = temp
+                
+                leftPointer += 1
+                rightPointer -= 1
+            for i in range(len(elem)):
+                if elem[i] == 0:
+                    elem[i] = 1
+                elif elem[i] == 1:
+                    elem[i] =0
+        return image
+    
+    
+sol= Solution()
+print sol.imageFlip([[1,1,0],[1,0,1],[0,0,0]])
+            
+            
+        
+        

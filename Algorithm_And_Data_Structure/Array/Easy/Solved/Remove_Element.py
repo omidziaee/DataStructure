@@ -41,3 +41,15 @@ for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
 '''
+
+class Solution(object):
+    def removeElem(self, nums, val):
+        l = 0
+        for elem in nums:
+            if elem != val:
+                print elem
+                l += 1
+        return l
+    
+sol = Solution()
+sol.removeElem([0,1,2,2,3,0,4,2], 2)
