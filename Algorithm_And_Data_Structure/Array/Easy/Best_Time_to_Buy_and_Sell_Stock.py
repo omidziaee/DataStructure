@@ -20,3 +20,29 @@ Input: [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 '''
+class Solution():
+    def buyStockNaive(self, price):
+        maxProfit = 0
+        for i in range(0, len(price)):
+            for j in range(i + 1, len(price)):
+                profit = price[j] - price[i]
+                if profit > maxProfit:
+                    maxProfit = profit
+        return maxProfit
+    def buyStock(self, price):
+        minPrice = -10
+        maxProfit = 0
+        for i in range(len(price)):
+            if price[i] < minPrice:
+                minPrice = price[i]
+            else:
+                profit = price[i] - minPrice
+                if profit > maxProfit:
+                    maxProfit = profit
+        return maxProfit
+            
+    
+sol = Solution()
+print sol.buyStock([7,1,5,3,6,4])
+                
+        
