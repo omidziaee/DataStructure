@@ -22,3 +22,24 @@ The pairs (i, j) and (j, i) count as the same pair.
 The length of the array won't exceed 10,000.
 All the integers in the given input belong to the range: [-1e7, 1e7].
 '''
+
+class Solution(object):
+    def kDiffNaive(self, nums, k):
+        nums = list(set(nums))
+        occurance = 0
+        for i in range(len(nums) - 1):
+            for j in range(i+1, len(nums)):
+                if abs(nums[i] - nums[j]) == k:
+                    occurance += 1
+        return occurance
+    
+    def kDiff(self, nums, k):
+        nums = list(set(nums))
+        occurance = 0
+        for elem in nums:
+            if elem - k in nums:
+                occurance += 1
+        return occurance
+    
+sol = Solution()
+print sol.kDiff([3, 1, 4, 1, 5], 2)
