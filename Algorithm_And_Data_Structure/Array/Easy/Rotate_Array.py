@@ -24,3 +24,13 @@ Note:
 Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.
 Could you do it in-place with O(1) extra space?
 '''
+class Solution(object):
+    def rotArray(self, nums, k):
+        while k > 0:
+            nums.insert(0,nums.pop())
+            k -= 1
+        return nums
+    
+sol = Solution()
+print sol.rotArray([-1,-100,3,99], 2)            
+        

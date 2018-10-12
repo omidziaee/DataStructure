@@ -14,3 +14,17 @@ Note:
 The length of the given array will be in range [3,104] and all elements are in the range [-1000, 1000].
 Multiplication of any three numbers in the input won't exceed the range of 32-bit signed integer.
 '''
+
+class Solution(object):
+    def findMaxMulThree(self, nums):
+        nums.sort()
+        if len(nums) < 3:
+            return -1
+        else:
+            return nums[-1] * nums[-2] * nums[-3]
+        
+    def findMaxMul(self, nums):
+        
+        
+sol = Solution()
+print sol.findMaxMulThree([1, 2, 3, 4])

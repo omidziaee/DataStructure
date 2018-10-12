@@ -29,5 +29,17 @@ nums will have a length in the range [1, 50].
 Every nums[i] will be an integer in the range [0, 99].
 '''
 class Solution(object):
-    def largestNum(self, nums, k):
-        
+    def largestNum(self, nums):
+        maxElem = max(nums)
+        passTest = True
+        if len(nums) == 1:
+            return 0
+        for elem in nums:
+            if elem != maxElem:
+                if 2 * elem > maxElem:
+                    passTest = False
+        return nums.index(maxElem) if passTest else -1
+                    
+
+sol = Solution()
+print sol.largestNum([3, 6, 1, 0])
