@@ -24,7 +24,15 @@ class Solution(object):
             return nums[-1] * nums[-2] * nums[-3]
         
     def findMaxMul(self, nums):
+        mulMax = -100000
+        for j in range(len(nums) - 2):
+            mul = nums[j] * nums[j + 1] * nums[j + 2]
+            if mul > mulMax:
+                mulMax = mul
+        return mulMax
+            
+        
         
         
 sol = Solution()
-print sol.findMaxMulThree([1, 2, 3, 4])
+print sol.findMaxMul([-4,-3,-2,-1,60])

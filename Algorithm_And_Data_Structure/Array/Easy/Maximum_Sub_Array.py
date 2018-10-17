@@ -13,3 +13,19 @@ Follow up:
 
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 '''
+class Solution(object):
+    def maxSubArr(self, nums):
+        sumMax = 0
+        for i in range(len(nums) - 1):
+            sumTemp = nums[i]
+            for j in range(i+1, len(nums)):
+                sumTemp += nums[j]
+                if sumTemp > sumMax:
+                    sumMax = sumTemp
+                    
+        return sumMax
+    
+    
+sol = Solution()
+print sol.maxSubArr([4,-1,2,1])
+                    
