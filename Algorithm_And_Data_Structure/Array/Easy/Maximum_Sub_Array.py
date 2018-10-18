@@ -14,7 +14,7 @@ Follow up:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 '''
 class Solution(object):
-    def maxSubArr(self, nums):
+    def maxSubArrNaive(self, nums):
         sumMax = 0
         for i in range(len(nums) - 1):
             sumTemp = nums[i]
@@ -24,8 +24,16 @@ class Solution(object):
                     sumMax = sumTemp
                     
         return sumMax
+    def maxSub(self, nums):
+        maxSum = nums[0]
+        maxCurr = 0
+        for i in range(len(nums)):
+            maxCurr = max(maxCurr + nums[i], nums[i])
+            maxSum = max(maxCurr, maxSum)
+        return maxSum
+            
     
     
 sol = Solution()
-print sol.maxSubArr([4,-1,2,1])
+print sol.maxSub([4,-1,2,1])
                     

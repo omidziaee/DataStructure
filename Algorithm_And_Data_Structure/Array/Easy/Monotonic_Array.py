@@ -37,3 +37,28 @@ Note:
 1 <= A.length <= 50000
 -100000 <= A[i] <= 100000
 '''
+
+class Solution(object):
+    def isMonotone(self, nums):
+        isAsc = False
+        result = True
+        if len(nums) <= 1:
+            return True
+        if nums[0] <= nums[1]:
+            isAsc = True
+        for i in range(len(nums) - 1):
+            if isAsc:
+                if nums[i + 1] < nums[i]:
+                    result = False
+            else:
+                if nums[i + 1] > nums[i]:
+                    result = False
+        return result
+    
+sol = Solution()
+print sol.isMonotone([4, 3, 3, 7])
+                
+                
+                    
+                    
+                     
