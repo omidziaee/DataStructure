@@ -19,14 +19,24 @@ Output:
 class Solution(object):
     def dispressNum(self, nums):
         nums.sort()
-        result = []
+        result = [] 
         for i in range(len(nums) - 1):
             if nums[i + 1] - nums[i] > 1:
                 nums.insert(i + 1, nums[i] + 1)
                 result.append(nums[i] + 1)
         return result
+    
+    def disapearedNums(self, nums):
+        result = []
+        for i in range(1, len(nums) + 1):
+            if i not in nums:
+                result.append(i)
+        return result
+            
+            
+            
 
 sol = Solution()
-print sol.dispressNum([4,3,2,7,8,2,3,1])                
+print sol.disapearedNums([1, 1])                
                 
             

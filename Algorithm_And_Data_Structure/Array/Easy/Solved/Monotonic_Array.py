@@ -41,22 +41,38 @@ Note:
 class Solution(object):
     def isMonotone(self, nums):
         isAsc = False
-        result = True
+        isDesc = False
         if len(nums) <= 1:
             return True
-        if nums[0] <= nums[1]:
-            isAsc = True
+        # When two consequtive are equal it is neither Asc nor Desc
         for i in range(len(nums) - 1):
-            if isAsc:
-                if nums[i + 1] < nums[i]:
-                    result = False
+            if nums[i + 1] > nums[i]:
+                isAsc = True
+                if isDesc:
+                    return False
+            if nums[i + 1] < nums[i]:
+                isDesc = True
+                if isAsc:
+                    return False
+        return True
+    def isMonotoneCount(self, nums):
+        # In total the number of the comparisons is equal to the length of the array
+        # Counter inc
+        i = 0
+        # Counter dec 
+        j = 0
+        for k in range(len(nums) - 1):
+            if nums[k + 1] >nums[k]:
+                i += 1
+            elif nums[k + 1] == nums[k]:
+                i += 1
+                j += 1
             else:
-                if nums[i + 1] > nums[i]:
-                    result = False
-        return result
+                j += 1
+        return (i == len(nums) - 1) or (j == len(nums) - 1)
     
 sol = Solution()
-print sol.isMonotone([4, 3, 3, 7])
+print sol.isMonotone([1, 2, 2, 3])
                 
                 
                     

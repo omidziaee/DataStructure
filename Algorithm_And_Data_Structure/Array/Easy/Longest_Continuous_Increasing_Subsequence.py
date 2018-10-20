@@ -15,3 +15,17 @@ Output: 1
 Explanation: The longest continuous increasing subsequence is [2], its length is 1. 
 Note: Length of the array will not exceed 10,000.
 '''
+class Solution(object):
+    def lenLongestIncreasing(self, nums):
+        tempMax = 0
+        maxLen = 0
+        for i in range(len(nums) - 1):
+            if nums[i + 1] > nums[i]:
+                tempMax += 1
+                maxLen = max(maxLen, tempMax)
+            else:
+                tempMax = 0
+        return maxLen + 1
+    
+sol = Solution()
+print sol.lenLongestIncreasing([1, 3, 5, 4, 7, 8, 9])

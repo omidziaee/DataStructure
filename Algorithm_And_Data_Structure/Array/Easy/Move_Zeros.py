@@ -13,3 +13,13 @@ Note:
 You must do this in-place without making a copy of the array.
 Minimize the total number of operations.
 '''
+class Solution(object):
+    def moveZeros(self, nums):
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                nums.insert(len(nums), nums[i])
+                nums.pop(i)
+        return nums
+
+sol = Solution()
+print sol.moveZeros([0,1,0,3,12, 15, 0])
