@@ -30,7 +30,9 @@ class Solution():
                     maxProfit = profit
         return maxProfit
     def buyStock(self, price):
-        minPrice = -10
+        if len(price) == 0:
+            return 0
+        minPrice = price[0]
         maxProfit = 0
         for i in range(len(price)):
             if price[i] < minPrice:
