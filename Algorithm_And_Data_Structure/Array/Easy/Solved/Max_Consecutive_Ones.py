@@ -22,13 +22,16 @@ class Solution(object):
         for i, elem in enumerate(nums):
             if elem == 0:
                 if elem in dic:
+                    # Append the position of zeros to the list
                     dic.append(i)
                 else:
+                    # [] is the key point as it obliges the values be a list
                     dic = [i]
         maxOneLen = 0
         for i in range(1, len(dic)):
             # One zero is added in front of the list
             if dic[i] - dic[i - 1] - 1 > maxOneLen:
+                # One reside between zeros
                 maxOneLen = dic[i] - dic[i - 1] - 1
         return maxOneLen
     
@@ -48,11 +51,25 @@ class Solution(object):
                         firstPointer = j
                         
         return maxOneLen
+    
+    def findMaxOnes(self, nums):
+        tempLen = 0
+        maxLen = 0
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                tempLen += 1
+                # It seems this max func takes time!!
+                #maxLen = max(maxLen, tempLen)
+                if tempLen > maxLen:
+                    maxLen = tempLen
+            else:
+                tempLen = 0
+        return maxLen
                 
             
     
     
 sol = Solution()
-print sol.findLenOne([0, 0 , 0 , 1])
+print sol.maxConsecOnes([1, 1 , 0 , 1])
                             
             

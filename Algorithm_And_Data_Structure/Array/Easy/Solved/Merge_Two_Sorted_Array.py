@@ -38,6 +38,25 @@ class Solution(object):
             j += 1
             k += 1
         return mergedArr
+    # Copied from Leetcode
+    def merge(self, nums1, m, nums2, n):
+        temp1 = m-1
+        temp2 = n-1
+        temp3 = m+n-1
+
+        while temp1 >= 0 and temp2 >= 0:
+            if nums1[temp1] > nums2[temp2]:
+                nums1[temp3] = nums1[temp1]
+                temp1 -= 1
+            else:
+                nums1[temp3] = nums2[temp2]
+                temp2 -= 1
+            temp3 -= 1
+
+        while temp2 >= 0:
+            nums1[temp3] = nums2[temp2]
+            temp2 -= 1
+            temp3 -= 1
     
 sol = Solution()
 print sol.mergeSortedArrays([1,2,3,0,0,0], [2, 5, 6])

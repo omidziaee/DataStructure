@@ -19,3 +19,16 @@ Note:
 
 1 <= A.length <= 5000
 '''
+class Solution(object):
+    def SortParity(self, nums):
+        odds = []
+        evens = []
+        for elem in nums:
+            if elem % 2 == 0:
+                evens.append(elem)
+            else:
+                odds.append(elem)
+        return evens + odds
+    
+sol = Solution()
+print sol.SortParity([3,1,2,4])
