@@ -32,4 +32,43 @@ seats contains only 0s or 1s, at least one 0, and at least one 1.
 '''
 class Solution(object):
     def findMaxDistance(self, nums):
+        import collections
+        d = collections.defaultdict()
+        for i, elem in enumerate(nums):
+            if elem in d:
+                d[elem] = [i]
+            else:
+                d[elem].append(i)
+        maxDistanceOnes = 0
+        first = 0
+        for i in d:
+            if i - first > maxDistanceOnes:
+                maxDistanceOnes = i - first
+                first = i
+        if len(d) == 1:
+            maxDistanceOnes = max(len(nums) - i - 1, i)   
+            return maxDistanceOnes 
+        return maxDistanceOnes / 2
+    
+    def findMaxDistanceTwoPointers(self, nums):
+        leftPointer = 0
+        rightPointer = 0
+        maxDistance = 0
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                if leftPointer != 0:
+                    rightPointer = i
+                    maxDistance = max(maxDistance, rightPointer - leftPointer)
+                else:
+                    leftPointer = i
+                    maxDistance = i
+        if rightPointer == 0:
+            return max(leftPointer, len(nums) - leftPointer)
+        return maxDistance / 2
+                
+
+sol = Solution()
+print sol.findMaxDistanceTwoPointers([0,0,1,0,1,1])                
+            
+            
         

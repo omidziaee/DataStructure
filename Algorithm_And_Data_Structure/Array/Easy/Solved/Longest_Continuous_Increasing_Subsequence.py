@@ -19,6 +19,8 @@ class Solution(object):
     def lenLongestIncreasing(self, nums):
         tempMax = 0
         maxLen = 0
+        if len(nums) == 0:
+            return 0
         for i in range(len(nums) - 1):
             if nums[i + 1] > nums[i]:
                 tempMax += 1

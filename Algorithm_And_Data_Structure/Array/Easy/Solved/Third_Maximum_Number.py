@@ -24,3 +24,24 @@ Output: 1
 Explanation: Note that the third maximum here means the third maximum distinct number.
 Both numbers with value 2 are both considered as second maximum.
 '''
+class Solution(object):
+    def findThirdMax(self, nums):
+        import collections
+        d = collections.defaultdict()
+        nums = list(set(nums))
+        if len(nums) >= 3:
+            for i, elem in enumerate(nums):
+                if elem not in d:
+                    d[elem] = i
+            for i in range(3):
+                maxElem = max(nums)
+                result = nums.pop(d[maxElem])
+        else:
+            result = max(nums)
+                
+        return result
+            
+        
+sol = Solution()
+print sol.findThirdMax([2, 2, 3, 1])
+            

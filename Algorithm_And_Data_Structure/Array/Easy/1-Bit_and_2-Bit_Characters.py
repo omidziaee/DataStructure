@@ -23,3 +23,7 @@ Note:
 1 <= len(bits) <= 1000.
 bits[i] is always 0 or 1.
 '''
+class Solution(object):
+    def find_two_or_one_bit(the_nums):
+        
+        
