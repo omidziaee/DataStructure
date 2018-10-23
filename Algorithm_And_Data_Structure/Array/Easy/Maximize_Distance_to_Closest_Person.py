@@ -32,4 +32,24 @@ seats contains only 0s or 1s, at least one 0, and at least one 1.
 '''
 class Solution(object):
     def findMaxDistance(self, nums):
+        import collections
+        d = collections.defaultdict()
+        for i, elem in enumerate(nums):
+            if elem == 1:
+                d[i] = elem
+        maxDistanceOnes = 0
+        first = 0
+        for i in d:
+            if i - first > maxDistanceOnes:
+                maxDistanceOnes = i - first
+                first = i
+        if len(d) == 1:
+            maxDistanceOnes = max(len(nums) - i - 1, i)   
+            return maxDistanceOnes 
+        return maxDistanceOnes / 2
+
+sol = Solution()
+print sol.findMaxDistance([0,0,1,0,1,1])                
+            
+            
         
