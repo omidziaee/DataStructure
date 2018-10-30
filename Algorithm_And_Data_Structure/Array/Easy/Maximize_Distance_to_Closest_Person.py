@@ -35,8 +35,10 @@ class Solution(object):
         import collections
         d = collections.defaultdict()
         for i, elem in enumerate(nums):
-            if elem == 1:
-                d[i] = elem
+            if elem in d:
+                d[elem] = [i]
+            else:
+                d[elem].append(i)
         maxDistanceOnes = 0
         first = 0
         for i in d:
@@ -47,9 +49,26 @@ class Solution(object):
             maxDistanceOnes = max(len(nums) - i - 1, i)   
             return maxDistanceOnes 
         return maxDistanceOnes / 2
+    
+    def findMaxDistanceTwoPointers(self, nums):
+        leftPointer = 0
+        rightPointer = 0
+        maxDistance = 0
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                if leftPointer != 0:
+                    rightPointer = i
+                    maxDistance = max(maxDistance, rightPointer - leftPointer)
+                else:
+                    leftPointer = i
+                    maxDistance = i
+        if rightPointer == 0:
+            return max(leftPointer, len(nums) - leftPointer)
+        return maxDistance / 2
+                
 
 sol = Solution()
-print sol.findMaxDistance([0,0,1,0,1,1])                
+print sol.findMaxDistanceTwoPointers([0,0,1,0,1,1])                
             
             
         

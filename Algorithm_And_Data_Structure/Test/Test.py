@@ -1,20 +1,14 @@
-'''
-Created on Sep 5, 2018
+def reverse_words(message):
 
-@author: USOMZIA
-'''
-class Solution(object):
-    def separation(self, arr):
-        evens = []
-        odds = []
-        for elem in arr:
-            if elem % 2 != 0:
-                odds.append(elem)
-            else:
-                evens.append(elem)
-        return evens + odds
-sol = Solution()
-print sol.separation([4,3,5,2])    
-
- 
+    # Decode the message by reversing the words
+    for i in range(len(message)):
+        if message[i] != ' ':
+            message.insert(len(message) - 1, message.pop(0))
+        else:
+            message.insert(0, messa)
+            
         
+    return message
+
+message = list('vailt cake')
+print reverse_words(message)
