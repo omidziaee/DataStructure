@@ -33,7 +33,7 @@ import unittest
 def sort_scores(scores, max_score):
     # plus one because it starts at zero [0, 1, 2, 3] max is 3 and we need 4 elements
     map_scores = [0] * (max_score + 1)
-    
+    # It can also be a dictionary instead of a list to keep the counts
     for score in scores:
         map_scores[score] += 1
     #The following list is used to expand the scores based on the nuber of occurances
