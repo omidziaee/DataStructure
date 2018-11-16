@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import unittest
+=======
+def reverse_words(message):
+>>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
 
+<<<<<<< HEAD
 def merge_lists(my_list, alices_list):
 
     # Combine the sorted lists into one large sorted list
@@ -20,7 +25,17 @@ def merge_lists(my_list, alices_list):
     while j < len(alices_list):
         sorted_list.append(alices_list[j])
         j += 1
+=======
+    # Decode the message by reversing the words
+    for i in range(len(message)):
+        if message[i] != ' ':
+            message.insert(len(message) - 1, message.pop(0))
+        else:
+            message.insert(0, messa)
+            
+>>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
         
+<<<<<<< HEAD
 
     return sorted_list
 
@@ -72,3 +87,9 @@ class Test(unittest.TestCase):
 
 
 unittest.main(verbosity=2)
+=======
+    return message
+
+message = list('vailt cake')
+print reverse_words(message)
+>>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
