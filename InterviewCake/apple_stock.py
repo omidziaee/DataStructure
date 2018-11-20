@@ -11,10 +11,12 @@ def get_max_profit(stock_prices):
     max_profit = 0
     min_price = stock_prices[0]
     for i in range(len(stock_prices) - 1):
-        if stock_prices[i + 1] - min_price > max_profit:
-            max_profit = stock_prices[i + 1] - min_price
-        else:
+        if stock_prices[i + 1] < min_price:
             min_price = stock_prices[i + 1]
+        else:
+            if stock_prices[i + 1] - min_price > max_profit:
+                max_profit = stock_prices[i + 1] - min_price
+       
 
     return max_profit
 

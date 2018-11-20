@@ -18,7 +18,7 @@ def checkSumDict(arr, target):
             a[elem] = target - elem
     return a
 
-arr = [4,5,2]
+arr = [3,5,2]
 
-print checkSum(arr, 9)
-print checkSumDict(arr, 9)
+print checkSum(arr, 6)
+print checkSumDict(arr, 6)
