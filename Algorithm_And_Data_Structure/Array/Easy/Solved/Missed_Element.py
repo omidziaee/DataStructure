@@ -24,6 +24,27 @@ def missElemFast(arr1, arr2):
         sum -= elem
     if sum != 0:
         return sum
-   
-missedElem([1,2,3,4,5], [1,2,3])   
-print missElemFast([1,2,3,4,5], [1,2,3,4])     
+    
+def miss_elem_faster(arr1, arr2):
+    import collections
+    d = collections.defaultdict()
+    missed_elems = []
+    for number in arr1:
+        if number in d:
+            d[number] += 1
+        else:
+            d[number] = 1
+    for num in arr2:
+        if num in d:
+            d[num] -= 1
+        else:
+            d[num] = 1
+    for key in d:
+        if d[key] != 0:
+            missed_elems.append(key)
+    return missed_elems
+            
+        
+        
+     
+print miss_elem_faster([1,2,3,4,5,6], [1,2,3,4,7])     

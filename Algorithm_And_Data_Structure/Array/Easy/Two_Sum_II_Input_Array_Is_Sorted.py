@@ -24,7 +24,7 @@ class Solution(object):
         # As it is said that all the numbers are unique we dont need to put convert the numbers to set
         for index, number in enumerate(numbers):
             if target - number in keep_seen_index:
-                return [keep_seen_index[target - number], i]
+                return [keep_seen_index[target - number] + 1, index + 1]
             else:
                 keep_seen_index[number] = index
         return []
@@ -40,7 +40,7 @@ class Solution(object):
                 left_pointer += 1
             else:
                 if (numbers[left_pointer] + numbers[right_pointer] == target):
-                    return [left_pointer, right_pointer] 
+                    return [left_pointer + 1, right_pointer + 1] 
                 
         return []
                    
