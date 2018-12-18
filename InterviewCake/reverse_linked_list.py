@@ -9,12 +9,51 @@ import unittest
 def reverse(head_of_list):
 
     # Reverse the linked list in place
-    if head_of_list.next == None:
-        return head_of_list
-    else:
-        reverse(head_of_list.next)
-
-    return None
+    '''
+    consider the following (it is better to consider it in multiple lines instead of
+    one line, one line make it less comprehendable!!)
+    a -> b
+    b -> c
+    c -> d
+    d -> None (a->b->c->d->None)
+    what we want is:
+    a -> None
+    b -> a
+    c -> b
+    d -> c (d->c->b->a->None)
+    As it can be seen if the current_node.next points to the previous node it will be
+    reversed!
+    '''
+    # The following reverses the linkedlist in one traverse
+    current_node = head_of_list
+    next_node = None
+    previous_node = None
+    
+    # Traverse the list
+    while current_node:
+        # to swap the next node and previous node!
+        # for the first iteration next_node = b
+        # for the second iteration next_node = c
+        # for the third iteration next_node = None
+        next_node = current_node.next
+        # for the first iteration a.next = None a->None
+        # for the second iteration b.next = a b->a
+        # for the third iteration c.next = b c->b
+        current_node.next = previous_node
+        
+        # Now step forward
+        # for the first iteration previous_node = a
+        # for the second iteration previous_node = b
+        # for the third iteration previous_node = c
+        previous_node = current_node
+        # for the first iteration current_node = b
+        # for the second iteration current_node = c
+        # for the third iteration current_node = None
+        current_node = next_node
+        # So now we have c->b->a->None
+        
+    return previous_node
+        
 
 
 
@@ -34,39 +73,10 @@ def reverse(head_of_list):
 
 
 # Tests
-
 class Test(unittest.TestCase):
-
     class LinkedListNode(object):
-
-        def __init__(self, value, next=None):
+        def __init__(self, value, next = None):
             self.value = value
-            self.next  = next
-
-        def get_values(self):
-            node = self
-            values = []
-            while node is not None:
-                values.append(node.value)
-                node = node.next
-            return values
-
-
-    def test_long_linked_list(self):
-        sixth = Test.LinkedListNode(6)
-        fifth = Test.LinkedListNode(5, sixth)
-        fourth = Test.LinkedListNode(4, fifth)
-        third = Test.LinkedListNode(3, fourth)
-        second = Test.LinkedListNode(2, third)
-        first = Test.LinkedListNode(1, second)
-
-        result = reverse(first)
-        self.assertIsNotNone(result)
-
-        actual = result.get_values()
-        expected = [6, 5, 4, 3, 2, 1]
-        self.assertEqual(actual, expected)
-
-
-
-unittest.main(verbosity=2)
+            self.next = next
+            
+        
