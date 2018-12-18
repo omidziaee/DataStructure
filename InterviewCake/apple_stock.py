@@ -4,21 +4,32 @@ Created on Nov 8, 2018
 @author: USOMZIA
 '''
 def get_max_profit(stock_prices):
-    if len(stock_prices) < 2:
-        return 0
 
     # Calculate the max profit
-    max_profit = 0
+    # It is not a good idea to start the max_profit with 0 as if the price goes down all the way we will have problem
+    # However, initiating the max_profit with a very  low value is also not good as at the first iteration it get the value of zero
+    # and remains on it forever! But if we initiate it with a very low value and start the loop to check after the first element of the
+    # prices it would solve thid issue
+    # We need to handle the edge case of less than two prices
+    if len(stock_prices) < 2:
+        raise ValueError("In order to calculate the profit at least we need two prices!")
+    max_profit = stock_prices[1] - stock_prices[0]
     min_price = stock_prices[0]
-    for i in range(len(stock_prices) - 1):
-        if stock_prices[i + 1] < min_price:
-            min_price = stock_prices[i + 1]
-        else:
-            if stock_prices[i + 1] - min_price > max_profit:
-                max_profit = stock_prices[i + 1] - min_price
-       
-
+    for current_time in range(1, len(stock_prices)):
+        # It is essential to calculate the max_profit before updating the min_price. Otherwise, if the prices always go down max_profit 
+        # will be zero which is wrong and it should be able to return a negative value
+        max_profit = max(max_profit, stock_prices[current_time] - min_price)
+        # Now you can update the min_price to prevent the max_profit be always zero in the case of stock_prices monotonically decreasing
+        min_price = min(min_price, stock_prices[current_time])
     return max_profit
+
+def get_max_profit_agh(stock_prices):
+    max_profit = 0
+    for buy_time in range(len(stock_prices)):
+        for sell_time in range(buy_time + 1, len(stock_prices)):
+            max_profit = max(max_profit, stock_prices[sell_time] - stock_prices[buy_time])
+    return max_profit
+            
 
 
 # Tests

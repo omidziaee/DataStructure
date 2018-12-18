@@ -39,7 +39,6 @@ Note:
 It is guaranteed that Alice and Bob have different total amounts of candy.
 It is guaranteed there exists an answer.
 '''
-from win32job import AssignProcessToJobObject
 
 class Solution(object):
     def fairCandySwap(self, alice, bob):
@@ -52,16 +51,10 @@ class Solution(object):
         half = (sumAlice + sumBob) / 2
         if sumAlice > sumBob:
             return [sumAlice - sumBob, sumAlice - half]
-        else:
+        elif sumBob > sumAlice:
             return [sumBob - half, sumBob - sumAlice]
-        
-    def faiirCandyCorr(self, A, B):
-        sumA = 0
-        sumB = 0
-        for elem in A:
-            sumA += elem
-        for elem in B:
-            sumB += elem
+        else: 
+            return []
         
             
         
