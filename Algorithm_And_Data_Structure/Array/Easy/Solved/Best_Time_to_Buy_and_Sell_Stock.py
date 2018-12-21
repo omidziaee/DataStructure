@@ -42,9 +42,31 @@ class Solution():
                 if profit > maxProfit:
                     maxProfit = profit
         return maxProfit
+    
+    def test_sol(self, prices):
+        # In each iteration we need to check the max and min price and then update the max profit and check it with the max profit
+        # edge case
+        if len(prices) < 2:
+            raise ValueError("At least there should be two prices!")
+        
+        max_price = prices[0]
+        min_price = prices[0]
+        max_profit = 0
+        
+        for price in prices:
+            potential_profit = price - min_price
+            max_profit = max(max_profit, potential_profit)
+            # You do not need this as you are not going to use it anywhere
+            # There is no need to have a max_price
+            max_price = max(price, max_price)
+            min_price = min(price, min_price)
+            
+        return max_profit
+            
+            
             
     
 sol = Solution()
-print sol.buyStock([7,1,5,3,6,4])
+print sol.test_sol([7,6,5,4])
                 
         

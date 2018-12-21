@@ -1,5 +1,69 @@
 import unittest
-
+def is_valid_binary_tree_naive(tree_root):
+    # DFS as we want to check if the binary tree is valid just if you wanted to check
+    # the shortest path us BFS
+    # The following does not work! It just check current node with its left and right
+    # However it should check with the upper levels as well!!
+    nodes = []
+    nodes.append(tree_root)
+    while len(nodes) > 0:
+        node = tree_root.pop()
+        value = node.value
+        
+        
+        if node.left:
+            nodes.append(node.left)
+            if node.left.value > value:
+                return False
+        if node.right:
+            nodes.append(node.right)
+            if node.right.value < value:
+                return False
+            
+    
+    return True
+    
+def is_binary_search_tree(tree_root):
+    # Stack to keep the traversal
+    keep_nodes_limits = []
+    keep_nodes_limits.append((tree_root, float('inf'), -float('inf')))
+    
+    while len(keep_nodes_limits) > 0:
+        node, upper_bound, lower_bound = keep_nodes_limits.pop()
+        
+        # Now check that the value of the current node should be less than lower limit and bigger than higher limit
+        if (node.value <= lower_bound) or (node.value >= upper_bound):
+            return False
+        
+        # Now push the left and right nodes to the stack
+        # When the current node has left node the upper_bound should get changed and
+        # the value of current node is the new upper_bound and vice-versa!!
+        if node.left:
+            keep_nodes_limits.append((node.left, node.value, lower_bound))
+            
+        if node.right:
+            keep_nodes_limits.append((node.right, upper_bound, node.value))
+            
+    return True
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 def is_binary_search_tree(root):
     # We need to define a stack for traversing the tree
