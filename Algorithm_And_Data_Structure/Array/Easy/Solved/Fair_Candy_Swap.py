@@ -41,20 +41,29 @@ It is guaranteed there exists an answer.
 '''
 
 class Solution(object):
-    def fairCandySwap(self, alice, bob):
-        sumAlice = 0
-        sumBob = 0
-        for elem in alice:
-            sumAlice += elem
-        for elem in bob:
-            sumBob += elem
-        half = (sumAlice + sumBob) / 2
-        if sumAlice > sumBob:
-            return [sumAlice - sumBob, sumAlice - half]
-        elif sumBob > sumAlice:
-            return [sumBob - half, sumBob - sumAlice]
-        else: 
-            return []
+    def fairCandySwap(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: List[int]
+        """
+        # The strategy is to make the sum of the two arrays equal after the swap
+        # After the swap sum should be equal to the average
+        average_two_lists = (sum(A) + sum(B)) / 2
+        sum_A = sum(A)
+        find_pairs = False
+        index = 0
+        paired_elements = []
+        # Create a set from the second array to make the search o(1)
+        B_set = set(B)
+        while (index < len(A)) and (not find_pairs):
+            # The borrowed element from the other array should be equal to the following
+            borrowed_from_second = average_two_lists - sum_A + A[index]
+            if borrowed_from_second in B_set:
+                find_pairs = True
+                paired_elements = [A[index], borrowed_from_second]
+            index += 1
+        return paired_elements
         
             
         
