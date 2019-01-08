@@ -44,11 +44,8 @@ class Solution(object):
     def merged_sorted_to_first(self, nums1, nums2, m, n):
         # Super smart way!
         # Here as we dont want to create a new array and append into it we can instead of checking which
-        # element of the arrays is smaller than the other one we can check which one is bigger! Because if
-        # we check lets say the first element of the second is less than the first element of the first array
-        # if it is it is ok we can insert it as the first element of the first array but of it is not we need
-        # to check all the elements of the first arr one by one which ends up in two nested loop! o(m*n)
-        # m is the length of nums1 without zeros at the end
+        # element of the arrays is smaller than the other one we can check which one is bigger! 
+        # Start from bigger is much easier as we do end up which easier logic
         while m > 0 and n > 0:
             if nums1[m - 1] >= nums2[n - 1]:
                 nums1[m + n - 1] = nums1[m - 1]
@@ -61,9 +58,41 @@ class Solution(object):
         if n > 0:
             nums1[:n] = nums2[:n]
         return nums1
+    
+    def merge(self, nums1, m, nums2, n):
+        """
+        :type nums1: List[int]
+        :type m: int
+        :type nums2: List[int]
+        :type n: int
+        :rtype: void Do not return anything, modify nums1 in-place instead.
+        """
+        # We need two pointers to traverse over the lists and compare the values
+        # We can fill the array from the begining or from the end
+        # For sure it is much easier to fill it out from the end but
+        # in this case it is needed to start from the max element and
+        # move backward.
+        pointer_to_traverse_nums1 = 0
+        pointer_to_traverse_nums2 = 0
+        while pointer_to_traverse_nums1 < m + n and pointer_to_traverse_nums2 < n:
+            # Check the lists if the element in the second list is less than or equal to 
+            # the element in the first list, the element of the second list should be inserted
+            # to the first list and both pointers will increase by one. For sure do not forget to 
+            # drop one zero from the end for each insert.
+            if nums1[pointer_to_traverse_nums1] >= nums2[pointer_to_traverse_nums2]:
+                nums1.insert(pointer_to_traverse_nums1, nums2[pointer_to_traverse_nums2])
+                pointer_to_traverse_nums1 += 1
+                pointer_to_traverse_nums2 += 1
+                nums1.pop()
+            # This is an else why did you put another if here shame on you!!
+            # If the element of the first list is less than the elment of the 
+            else:
+                pointer_to_traverse_nums1 += 1
+        nums1[m + pointer_to_traverse_nums2:] = nums2[pointer_to_traverse_nums2:]
+        return nums1
             
             
-num1 = [1, 2, 3, 0, 0, 0]
-num2 = [2, 5, 6]  
+num1 = [2, 0]
+num2 = [1]  
 sol = Solution()
-print sol.merged_sorted_to_first(num1, num2)    
+print sol.merge(num1, 1, num2, 1)    
