@@ -43,13 +43,23 @@ for (int i = 0; i < len; i++) {
 '''
 
 class Solution(object):
-    def removeElem(self, nums, val):
-        l = 0
-        for elem in nums:
-            if elem != val:
-                print elem
-                l += 1
-        return l
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        # The idea is to use two pointers; one slow pointer and one fast pointer (same as moving zero elements to the end).
+        # As far as the value of the list in the fast pointer is not equal to the defined value we replace the value in 
+        # the slow pointer location with the value in the fast pointer location and increase the value of the 
+        # slow pointer by one.
+        pointer_to_place_nonVal = 0
+        for index in range(len(nums)):
+            if nums[index] != val:
+                nums[pointer_to_place_nonVal] = nums[index]
+                pointer_to_place_nonVal += 1
+        nums[pointer_to_place_nonVal:] = [None for _ in range(len(nums) - pointer_to_place_nonVal)]
+        return pointer_to_place_nonVal
     
 sol = Solution()
-sol.removeElem([0,1,2,2,3,0,4,2], 2)
+sol.removeElement([0,1,2,2,3,0,4,2], 2)

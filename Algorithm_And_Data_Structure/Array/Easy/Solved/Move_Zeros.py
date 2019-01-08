@@ -49,8 +49,15 @@ class Solution(object):
         nums[first_pointer] = nums[second_pointer]
         nums[second_pointer] = temp
         return nums
+    def move_zeros_simple(self, nums):
+        counter_non_zero = 0
+        for index in range(len(nums)):
+            if nums[index] != 0:
+                nums[counter_non_zero] = nums[index]
+                counter_non_zero += 1
+        nums[counter_non_zero:len(nums)] = [0] * (len(nums) - counter_non_zero)
         
-
+        
 nums = [0, 0, 1, 2, 3, 0, 4]
 
 sol = Solution()
