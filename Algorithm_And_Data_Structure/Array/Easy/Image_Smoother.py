@@ -21,3 +21,37 @@ Note:
 The value in the given matrix is in the range of [0, 255].
 The length and width of the given matrix are in the range of [1, 150].
 '''
+class Solution(object):
+    def imageSmoother(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # The idea is nice and easy to understand. We need to traverse the array and 
+        # check exactly where we are. If it is possible and all the 8 suronding indices
+        # have value or we are in boundries. So we need a counter for counting the existance
+        # of surronding of cells.
+        number_of_rows = len(M)
+        number_of_columns = len(M[0])
+        # Create and initilize the result list
+        
+        result = [[0 for _ in range(number_of_columns)] for _ in range(number_of_rows)]
+        for row_index in range(number_of_rows):
+            for column_index in range(number_of_columns):
+                # Now we check all the surronding elements and count them
+                counter_of_surroundings = 0
+                for surrounding_rows in (row_index - 1, row_index, row_index + 1):
+                    for surrounding_columns in (column_index - 1, column_index, column_index + 1):
+                        # Now we need to check if surroundings exist
+                        if 0 <= surrounding_rows < number_of_rows and 0 <= surrounding_columns < number_of_columns:
+                            result[row_index][column_index] += M[surrounding_rows][surrounding_columns]
+                            counter_of_surroundings += 1
+                result[row_index][column_index] /= counter_of_surroundings
+        return result
+                            
+                            
+                            
+                
+                            
+                        
+        
