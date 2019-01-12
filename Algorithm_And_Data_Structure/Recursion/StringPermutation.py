@@ -21,6 +21,23 @@ class Solution(object):
                 for perm in  self.permutation(s[:i] + s[i+1:]):
                     out += [let + perm]
         return out
+    def get_permutations(self,string):
+
+    # Generate all permutations of the input string
+    #base case
+        if len(string) <= 1:
+            return set([string])
+        perm_list = []
+        for index in range(len(string)):
+            head_of_perm = string[index]
+            tail_of_perm = self.get_permutations(string[:index] + string[index + 1:])
+        for perm in tail_of_perm:
+            perm_list.append(head_of_perm + perm)
+    
+        
+
+        return set(perm_list)
     
 sol = Solution()
+print sol.get_permutations('abc')
     
