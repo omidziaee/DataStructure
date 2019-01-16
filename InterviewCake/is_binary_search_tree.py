@@ -23,7 +23,7 @@ def is_valid_binary_tree_naive(tree_root):
     
     return True
     
-def is_binary_search_tree(tree_root):
+def is_binary_search_tree_original(tree_root):
     # Stack to keep the traversal
     keep_nodes_limits = []
     keep_nodes_limits.append((tree_root, float('inf'), -float('inf')))
@@ -45,44 +45,38 @@ def is_binary_search_tree(tree_root):
             keep_nodes_limits.append((node.right, upper_bound, node.value))
             
     return True
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+def is_binary_search_tree(tree_root):
+    # We are going to use the DFS as it might be short circuited earlier
+    # Edge case if the binary tree is empty it is True
+    if (not tree_root):
+        return True
+    # This is a stack to keep the traversals, it should keep the node and the limits of the upper and lower bound
+    # Keep in mind if the new node is left node then the new uppwer bound is going to be the last node value why?
+    # Because all the nodes beneath it should be less than that and for the right node it is the other way. Meaning 
+    # if the new node is the right node all the new lower bound is going to be the current node value as all the beneath 
+    # node values should be greatar than the current node value!!
+    stack_keep_node_limit = []
+    upper_limit = float('inf')
+    lower_limit = -float('inf')
+    stack_keep_node_limit.append((tree_root, upper_limit, lower_limit))
+    # Check till the stack is not empty
+    while stack_keep_node_limit:
+        node, upper_limit, lower_limit = stack_keep_node_limit.pop()
+        if node.value >= upper_limit or node.value <= lower_limit:
+            return False
+        else:
+            if node.left:
+                # So the new node is left side therefore the upper bound from now on will be the current node value
+                stack_keep_node_limit.append((node.left, node.value, lower_limit))
+            if node.right:
+                # So the new node is right side therefore the lower bound which means all the right side nodes lower bound will be the current node value,
+                # as the upper limit for the right side is inf
+                stack_keep_node_limit.append((node.right, upper_limit, node.value))
+    return True
     
     
 
-def is_binary_search_tree(root):
-    # We need to define a stack for traversing the tree
-    node_stack = [(root, -float('inf'), float('inf'))]
-    
-    #now loop over the tree and traverse the tree
-    while len(node_stack):
-        node, lower_bound, upper_bound = node_stack.pop()
-        
-        if (node.value < lower_bound) or (node.value > upper_bound):
-            return False
-        # Since this is a stack it is LIFO so it first start from the right and goes deep as is DFS
-        if node.left:
-            node_stack.append((node.left, lower_bound, node.value))
-        if node.right:
-            # Since the 
-            node_stack.append((node.right, node.value, upper_bound))
-            
-    return True
 
 class Test(unittest.TestCase):
 
