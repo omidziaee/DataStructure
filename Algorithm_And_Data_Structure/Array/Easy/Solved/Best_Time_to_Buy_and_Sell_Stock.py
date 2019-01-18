@@ -62,11 +62,22 @@ class Solution():
             min_price = min(price, min_price)
             
         return max_profit
+    def stock_new(self, nums):
+        if len(nums) <= 1:
+            return 0
+        max_profit = nums[1] - nums[0]
+        min_price = nums[0]
+        for current_time in range(1, len(nums)):
+            current_price = nums[current_time]
+            potential_profit = current_price - min_price
+            max_profit = max(max_profit, potential_profit)
+            min_price = min(min_price, current_price)
+        return max_profit
             
             
             
     
 sol = Solution()
-print sol.test_sol([7,6,5,4])
+print sol.stock_new([7,6,5,4])
                 
         

@@ -57,6 +57,6 @@ class Solution(object):
                     
         return result
                     
-S = "abbxxxxzzy"      
+S = "aaa"      
 sol = Solution()
 print sol.largeGroupPositions(S)

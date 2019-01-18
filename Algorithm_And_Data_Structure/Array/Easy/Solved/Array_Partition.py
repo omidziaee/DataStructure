@@ -68,6 +68,17 @@ class Solution(object):
         # Find the sum
         m = sum(l)
         return m
+    
+    def arrayPairSum_faster(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        sum = 0
+        for index in range(len(nums) / 2):
+            sum += nums[2 * index]
+        return sum
         
         
         
