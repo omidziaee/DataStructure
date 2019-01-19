@@ -64,6 +64,17 @@ class Solution(object):
                 paired_elements = [A[index], borrowed_from_second]
             index += 1
         return paired_elements
+    
+    def fairCandySwap_simpler(self, A, B):
+        sum_A = sum(A)
+        sum_B = sum(B)
+        set_B = set(B)
+        average = (sum_A + sum_B) / 2
+        for i, candy in enumerate(A):
+            borrowed_from_B = average - sum_A + candy 
+            if borrowed_from_B in set_B:
+                return [candy, borrowed_from_B]
+        return []
         
             
         

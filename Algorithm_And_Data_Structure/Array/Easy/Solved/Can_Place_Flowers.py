@@ -32,10 +32,29 @@ class Solution(object):
             # just need to check the last one, i, and the one before the last one i - 1
             # In this case we do not see any problem even for the one elemnt arrays! Nice and clean!
             # Be adviced the best checking appraoch in this case is to check i i-1 and i+1! not i i+1 and i+2!
+            # The order of second condition is important it should be (i == 0 or flowerbed[i - 1] == 0) if it is other way around
+            # we have issue since for the 0 index there is no i - 1 and it cause an error!
             if ((flowerbed[i] == 0 ) and (i == 0 or flowerbed[i - 1] == 0) and (i == len(flowerbed) - 1 or flowerbed[i + 1] == 0)):
                 count += 1
                 flowerbed[i] = 1
         return count >= n
+    # The following does not work the exceptions has issue
+    def can_place_flowers_easier(self, nums, k):
+        if len(nums) < 3:
+            return False
+        # The only problem is when the first and second is zero and the last and one before last is also zero
+        for index in range(1, len(nums) - 1):
+            if nums[index] == 0 and nums[index - 1] == 0 and nums[index + 1] == 0:
+                # Do not forget to replace the flower place with one this is essential otherwise that place 
+                # will be considered as empty
+                nums[index] = 1
+                k -= 1
+        # Now after we place all the flowers check for the edge cases
+        if nums[0] == 0 and nums[1] == 0:
+            k -= 1
+        if nums[-1] == 0 and nums[-2] == 0:
+            k -= 1
+        return k == 0
 
     
 sol = Solution()

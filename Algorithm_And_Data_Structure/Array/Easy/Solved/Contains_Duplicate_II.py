@@ -25,8 +25,11 @@ class Solution(object):
             if elem in d:
                 if k >= i - d[elem]:
                     return True
+                # The following replaces the old location with the new one as it might repeat 
+                # more than twice
                 else:
                     d[elem] = i
+            #This is for sure for the first occurance
             else:
                 d[elem] = i
         return False
