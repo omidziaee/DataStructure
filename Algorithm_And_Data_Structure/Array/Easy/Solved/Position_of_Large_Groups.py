@@ -2,9 +2,9 @@
 Created on Sep 27, 2018
 
 @author: USOMZIA
-In a string S of lowercase letters, these letters form consecutive groups of the same character.
+In a string_leet_code S of lowercase letters, these letters form consecutive groups of the same character.
 
-For example, a string like S = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z" and "yy".
+For example, a string_leet_code like S = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z" and "yy".
 
 Call a group large if it has 3 or more characters.  We would like the starting and ending positions of every large group.
 
@@ -36,8 +36,6 @@ class Solution(object):
         :type S: str
         :rtype: List[List[int]]
         """
-        # This is a two pointer problem first pointer is the start of the large group 
-        # and second pointer points to the end of the large group
         find_large_group = False
         slow_pointer = 0
         fast_pointer = 0
@@ -54,6 +52,10 @@ class Solution(object):
                 find_large_group = False
                 slow_pointer = 0 
                 fast_pointer = 0
+        # This is just for the one if the last chars make the group!!
+        # Otherwise because in this case it never goes to else for the last group
+        if fast_pointer - slow_pointer >= 2:
+            result.append([slow_pointer, fast_pointer])
                     
         return result
                     

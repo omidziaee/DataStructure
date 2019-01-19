@@ -18,3 +18,20 @@ Note:
 cost will have a length in the range [2, 1000].
 Every cost[i] will be an integer in the range [0, 999].
 '''
+class Solution(object):
+    def minCostClimbingStairs(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: int
+        """
+        # Base case
+        if len(cost) <= 2:
+            return 0
+        cost_from_stair = [0 for _ in range(len(cost))]
+        for i in range(len(cost) - 1):
+            cost_from_stair[i] = cost[i] + min(self.minCostClimbingStairs(cost[i+1:]),\
+                                               self.minCostClimbingStairs(cost[i+2:]))
+        return cost_from_stair
+            
+sol = Solution()
+print sol.minCostClimbingStairs([0, 1, 1])

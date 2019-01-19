@@ -5,7 +5,7 @@ Created on Aug 21, 2018
 '''
 
 # This is very similar to the simplified version the only difference is 
-# here after we find the prefix, the rest of the string goes to a recursive
+# here after we find the prefix, the rest of the string_leet_code goes to a recursive
 # process as for sure there is more than just one postfix!
 def wordBreak(s, wordDict):
     wordSet = set(wordDict)
