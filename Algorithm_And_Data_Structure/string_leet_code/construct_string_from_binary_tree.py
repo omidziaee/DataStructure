@@ -28,21 +28,45 @@ class Solution():
         :type t: TreeNode
         :rtype: str
         """
+        # Do not forget about edge cases but do it at the end
+        if not t:
+            return ''
         tree_2_str = ''
         stack_to_keep_nodes = []
         stack_to_keep_nodes.append(t)
         
         while stack_to_keep_nodes:
             node = stack_to_keep_nodes.pop()
-            if not node.left and not node.right:
-                tree_2_str += ')'
+            if node == ")":
+                tree_2_str += ")"
+                continue
+            tree_2_str += "(" + str(node.value)
+            if not node.left and node.right:
+                tree_2_str += '()'
             if node.right:
+                stack_to_keep_nodes.append(")")
                 stack_to_keep_nodes.append(node.right)
-                tree_2_str += "%s("%node.value
             if node.left:
+                stack_to_keep_nodes.append(")")
                 stack_to_keep_nodes.append(node.left)
-                tree_2_str += "%s("%node.value
-        return tree_2_str
+        return tree_2_str[1:]
+    # This one is preOrder traversal which to me is DFS recursive
+    def tree2str_recursive(self, t):
+        if t is None:
+                return ""
+            
+        ans = str(t.value) 
+
+        if t.left:
+            ans+="(" + self.tree2str_recursive(t.left) + ")"
+
+        if not t.left and t.right:
+            ans+="()"
+
+        if t.right:
+            ans+="(" + self.tree2str_recursive(t.right) + ")"
+
+        return ans
     
 class BinaryTreeNode():
     def __init__(self, value):
