@@ -8,7 +8,7 @@ import unittest
 
 def get_permutations(string):
 
-    # Generate all permutations of the input string
+    # Generate all permutations of the input string_leet_code
     #base case
     if len(string) <= 1:
         return set([string])

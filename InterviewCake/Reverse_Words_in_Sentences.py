@@ -17,7 +17,7 @@ class Solution(object):
             # If we arrive at space or the end of the message we need to call the reverse function
             # It is important to figure out when to send the word to the helper function
             # Order of this (message[i] == ' ') or (i == len(message)) is important
-            # As the loop goes over all consider +1 in for! As we want to move up to the end of the string!
+            # As the loop goes over all consider +1 in for! As we want to move up to the end of the string_leet_code!
             if (i == len(message)) or (message[i] == ' ') :
                 # i is the index of space
                 self.reverse_arr(message, start_of_reverse, i - 1)

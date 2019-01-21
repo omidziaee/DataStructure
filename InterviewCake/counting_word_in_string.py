@@ -5,7 +5,7 @@ Created on Nov 8, 2018
 
 You want to build a word cloud, an infographic where the size of a word corresponds to how often it appears in the body of text.
 
-To do this, you'll need data. Write code that takes a long string and builds its word cloud data in a dictionary, where the 
+To do this, you'll need data. Write code that takes a long string_leet_code and builds its word cloud data in a dictionary, where the 
 keys are words and the values are the number of times the words occurred.
 
 Think about capitalized words. For example, look at these sentences:

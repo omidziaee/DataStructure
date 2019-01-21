@@ -2,7 +2,7 @@
 Created on Nov 17, 2018
 
 @author: omid
-Write a function that takes a string as input and returns the string reversed.
+Write a function that takes a string_leet_code as input and returns the string_leet_code reversed.
 
 Example 1:
 

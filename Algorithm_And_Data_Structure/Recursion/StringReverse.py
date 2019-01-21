@@ -14,7 +14,7 @@ def stringReverse(s):
 
 
 def stringReverseNotRec(s):
-    # Note that to do this you should change the string to the list as the string is not mutable in python 
+    # Note that to do this you should change the string_leet_code to the list as the string_leet_code is not mutable in python 
     s = list(s)
     if len(s) == 1:
         return s
@@ -28,7 +28,7 @@ def stringReverseNotRec(s):
         s[rightPointer] = temp
         rightPointer -= 1
         leftPointer += 1
-    # Join the list together in order to create the new string
+    # Join the list together in order to create the new string_leet_code
     return ''.join(s)
 
 
