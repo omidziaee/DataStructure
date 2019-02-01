@@ -28,6 +28,25 @@ class Solution(object):
             else:
                 tempMax = 0
         return maxLen + 1
+    # Two_pointers
+    def lenLongestIncreasing_two_pointers(self, nums):
+        # Todo: Edge cases
+        right_pointer = 0
+        left_pointer = 0
+        max_len = 0
+        for i in range(len(nums) - 1):
+            if nums[i + 1] > nums[i]:
+                right_pointer += 1
+                
+            else:
+                max_len = max(max_len, right_pointer - left_pointer + 1)
+                right_pointer = i + 1
+                left_pointer = i + 1
+        # Very Important!! we need to check if the last right pointer is the last element
+        if right_pointer == len(nums) - 1:
+            max_len = max(max_len, right_pointer - left_pointer + 1)
+            
+        return max_len
     
 sol = Solution()
-print sol.lenLongestIncreasing([1, 3, 5, 4, 7, 8, 9])
+print sol.lenLongestIncreasing([1, 3, 5, 4, 7, 2])
