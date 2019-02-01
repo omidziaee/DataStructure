@@ -30,7 +30,7 @@ def get_permutations(string):
 class Test(unittest.TestCase):
 
     def test_three_character_string(self):
-        actual = get_permutations('abcd')
+        actual = get_permutations('abc')
         expected = set(['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
         self.assertEqual(actual, expected)
 

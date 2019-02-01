@@ -29,4 +29,4 @@ def get_permutations(string):
   return permutations
 
 
-print get_permutations("cats")
+print get_permutations("abc")
