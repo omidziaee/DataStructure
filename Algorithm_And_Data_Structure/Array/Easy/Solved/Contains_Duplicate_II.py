@@ -21,6 +21,7 @@ class Solution(object):
     def duplicateFinder(self, nums, k):
         import collections
         d = collections.defaultdict(int)
+        # Key if the dictionary is the number and value is the index of the last occurance
         for i, elem in enumerate(nums):
             if elem in d:
                 if k >= i - d[elem]:

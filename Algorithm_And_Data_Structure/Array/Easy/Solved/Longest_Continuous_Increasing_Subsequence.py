@@ -28,6 +28,7 @@ class Solution(object):
             else:
                 tempMax = 0
         return maxLen + 1
+<<<<<<< HEAD
     # Two_pointers
     def lenLongestIncreasing_two_pointers(self, nums):
         # Todo: Edge cases
@@ -46,6 +47,26 @@ class Solution(object):
         if right_pointer == len(nums) - 1:
             max_len = max(max_len, right_pointer - left_pointer + 1)
             
+=======
+    # ===========================
+    # =  Two pointers solution   =
+    # ===========================
+    def find_max_increasing_length(self, nums):
+        # Todo: Edge CASES
+        if len(nums) < 2:
+            return len(nums)
+        # This is a two pointer problem
+        left_pointer = 0
+        max_len = 0
+        for index in range(len(nums)):
+            if (index + 1 < len(nums)) and nums[index] >= nums[index + 1]:
+                max_len = max(max_len, index - left_pointer + 1)
+                left_pointer = index + 1
+            if index + 1 == len(nums):
+                max_len = max(max_len, index - left_pointer + 1)
+                
+                
+>>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
         return max_len
     
 sol = Solution()

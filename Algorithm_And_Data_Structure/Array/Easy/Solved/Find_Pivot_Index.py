@@ -53,13 +53,33 @@ class Solution():
         
         for before_index in range(1, len(nums)):
             sum_before_index[before_index] = sum_before_index[before_index - 1] + nums[before_index - 1]
+        # The last one should be zero that is the reason why it starts at -2
         for after_index in range(len(nums) - 2, -1, -1):
             sum_after_index[after_index] = sum_after_index[after_index + 1] + nums[after_index + 1]
         for index in range(len(nums)):
             if sum_before_index[index] == sum_after_index[index]:
                 return index
         return -1
-            
+    # The following is also good
+    def find_pivot_index(self, nums):
+        # Todo: Edge cases
+        if len(nums) < 3:
+            raise Exception("The length of the array should be greatar than 2!")
+        # Initialze
+        sum_before_index = [0 for _ in range(len(nums))]
+        sum_after_index = [0 for _ in range(len(nums))]
+        sum = 0
+        for index in range(1, len(nums)):
+            sum += nums[index - 1]
+            sum_before_index[index] = sum
+        sum = 0
+        for index in range(len(nums) - 1, -1, -1):
+            sum += nums[index - 1]
+            sum_after_index[index - 1] = sum
+        for index in range(len(sum_before_index)):
+            if sum_before_index[index] == sum_after_index[index]:
+                return index
+        return -1
     
 sol = Solution()
 print sol.find_prior_and_after([1, 7, 3, 6, 5, 6])

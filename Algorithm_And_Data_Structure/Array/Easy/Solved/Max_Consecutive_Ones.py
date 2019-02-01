@@ -65,7 +65,61 @@ class Solution(object):
             else:
                 tempLen = 0
         return maxLen
-                
+    # New and good
+    def find_max_ones(self, nums):
+        # Todo: Edge cases
+        # This is acutlly a temprorry counter as soon as we arrive to zero we reset it
+        one_counter = 0
+        max_one_counter = 0
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                one_counter += 1
+            else:
+                max_one_counter = max(max_one_counter, one_counter)
+                one_counter = 0
+        # This is just if the last num in nums is one also
+        if nums[-1] == 1:
+            max_one_counter = max(max_one_counter, one_counter)
+        return max_one_counter
+    
+    def find_max_ones_two_pointer(self, nums):
+        # This is to find the first one position
+        for k in range(len(nums)):
+            if nums[k] == 1:
+                break
+        left_pointer = k
+        right_pointer = k
+        max_one_counter = 0
+        for i in range(k, len(nums)):
+            if nums[i] == 1:
+                # Both of them right and left should be pointers to an index if here
+                # it is put right_pointer += 1 then in max_one_conter we should not add
+                # one as we already step forward the index one here
+                right_pointer = i
+            else:
+                max_one_counter = max(max_one_counter, right_pointer - left_pointer + 1)
+                left_pointer = i + 1
+                right_pointer = i + 1
+        # If the last num is one the else statement won't get fired. So we need another check
+        # just for the case if the last num is one!!
+        if nums[-1] == 1:
+            max_one_counter = max(max_one_counter, right_pointer - left_pointer + 1)
+        return max_one_counter
+    
+    def find_max_ones_one_pointer(self, nums):
+        #Todo: edge cases
+        for k in range(len(nums)):
+            if nums[k] == 1:
+                break
+        left_pointer = k
+        max_one_counter = 0
+        for i in range(k, len(nums)):
+            if nums[i] != 1:
+                max_one_counter = max(max_one_counter, i - left_pointer)
+        if nums[-1] == 1:
+            max_one_counter = max(max_one_counter, i - left_pointer + 1)
+        return max_one_counter
+                   
             
     
     
