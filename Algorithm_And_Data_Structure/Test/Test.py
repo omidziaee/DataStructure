@@ -1,42 +1,31 @@
-<<<<<<< HEAD
 class Solution(object):
-    def find_permutations(self, main_string):
-        if len(main_string) == 1:
-            return main_string
-        head = main_string[0]
-        remain_string = main_string[1:]
-        perms = []
-        for i in range(len(remain_string)):
-            perms.append(self.find_permutations(remain_string))
-            
-        for i in range(len(perms)):
-            perms[i] = ''.join((head + perms[i]))
-        return perms
-    
-sol = Solution()
-print sol.find_permutations('abc')
-            
-=======
-class Solution(object):
-    def letterCasePermutation(self, S):
-        if len(S) <= 1:
-            return S
-        first_char = S[0]
-        result = []
-        combinations_other = self.letterCasePermutation(S[1:])
-        for combination_other in combinations_other:
-            if first_char.isalpha():
-                result.append(first_char.upper() + combination_other) 
-                result.append(first_char.lower() + combination_other)
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        dic_keep_sum_location = {}
+        # key is the sum and value is the place that sum happend
+        dic_keep_sum_location[0] = [-1]
+        sum_so_far = 0
+        for i in range(len(nums)):
+            sum_so_far += nums[i]
+            if sum_so_far in dic_keep_sum_location:
+                dic_keep_sum_location[sum_so_far].append(i)
             else:
-                result.append(first_char + combination_other)
+                dic_keep_sum_location[sum_so_far] = [i]
+        counter = 0
+        if k == 0:
+            counter = len(dic_keep_sum_location[0]) - 1
+        else:
+            for sum in dic_keep_sum_location:
+                if sum - k in dic_keep_sum_location:
+                    counter += len(dic_keep_sum_location[sum - k])
+        
                 
-        return result
+        return counter
+                
         
-        
-    
-    
 sol = Solution()
-print sol.letterCasePermutation("a1b2")
-                    
->>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
+print sol.subarraySum([-1, -1, 1], 0)
