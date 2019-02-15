@@ -25,5 +25,16 @@ bits[i] is always 0 or 1.
 '''
 class Solution(object):
     def find_two_or_one_bit(the_nums):
-        
+        i = 0
+        while i < len(the_nums):
+            if the_nums[i] == 1:
+                i += 1
+                if i+1 == len(the_nums) - 1:
+                    return True
+            i += 1
+        return False
+
+nums = [1, 1]             
+sol = Solution()
+print sol.find_two_or_one_bit(nums)       
         

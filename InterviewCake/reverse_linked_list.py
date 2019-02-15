@@ -3,7 +3,6 @@ Created on Dec 6, 2018
 
 @author: USOMZIA
 '''
-import unittest
 
 
 def reverse(head_of_list):
@@ -62,21 +61,26 @@ def reverse(head_of_list):
 
 
 
+class SinglyLinkedList():
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
 
 
 
 
 
+a = SinglyLinkedList(1)
+b = SinglyLinkedList(2)
+c = SinglyLinkedList(3)
+d = SinglyLinkedList(4)
+
+a.next = b
+b.next = c
+c.next = d
 
 
-
-
-# Tests
-class Test(unittest.TestCase):
-    class LinkedListNode(object):
-        def __init__(self, value, next = None):
-            self.value = value
-            self.next = next
+print reverse(a)
             
         
