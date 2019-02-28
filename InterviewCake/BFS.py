@@ -32,9 +32,11 @@ def bfs_get_path(graph, start_node, end_node):
         # the initial one out of the while loop and for the others we update it
         # in the for loop while searching the neighbors of the current_node.
         
-        # Now check if the current_node is the end_node
+        # Now check if the current_node is the end_node 
         if current_node == end_node:
-            return recunstruct_path(how_we_reached_current_node, start_node, end_node)
+            # There is no need to send the start node to the path finder as the how_we_reached_current_node
+            # is started with the start_node!!
+            return recunstruct_path(how_we_reached_current_node, end_node)
             
         for neighbor in graph[current_node]:
             if neighbor not in nodes_already_seen:
@@ -48,7 +50,7 @@ def bfs_get_path(graph, start_node, end_node):
 
     return None
     
-def recunstruct_path(how_we_reached_current_node, start_node, end_node):
+def recunstruct_path(how_we_reached_current_node, end_node):
     # This is the list to indicate the shortest path
     shortest_path = []
     # Traversing the how_we_reached_current_node backward

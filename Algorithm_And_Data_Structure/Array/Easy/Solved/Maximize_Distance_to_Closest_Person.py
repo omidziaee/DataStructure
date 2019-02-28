@@ -49,16 +49,35 @@ class Solution(object):
                 last_one_position = i
         num_of_lead_zeros = first_one_position
         num_of_trail_zeros = len(seats) - last_one_position - 1
+        result = max(num_of_lead_zeros, num_of_trail_zeros, max_distace_in_between / 2)
+        return result
+    def maxDistToClosest(self, seats):
+        """
+        :type seats: List[int]
+        :rtype: int
+        """
+        first_one_position = 0
+        last_one_position = 0
+        max_distace_in_between = 0
+        num_of_lead_zeros = 0
+        num_of_trail_zeros = 0
+        for i in range(len(seats)):
+            if seats[i] == 1:
+                if seats[0] == 0 and last_one_position == 0:
+                    first_one_position = i
+                max_distace_in_between = max(max_distace_in_between, i - last_one_position)
+                last_one_position = i
+        num_of_lead_zeros = first_one_position
+        num_of_trail_zeros = len(seats) - last_one_position - 1
         return max(num_of_lead_zeros, num_of_trail_zeros, max_distace_in_between / 2)
+    
+sol = Solution()
+print sol.maxDistToClosest([1,0,0,1])
                 
                 
                 
                     
-            
-                
-
-sol = Solution()
-print sol.find_max_distance([0,0,0,1,0,1])                
+                         
             
             
         
