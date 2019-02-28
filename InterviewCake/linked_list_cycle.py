@@ -4,7 +4,6 @@ Created on Dec 17, 2018
 @author: USOMZIA
 '''
 import unittest
-from win32com.test.testall import verbosity
 def contains_cycle(first_node):
     node_already_seen = set()
     current_node = first_node
