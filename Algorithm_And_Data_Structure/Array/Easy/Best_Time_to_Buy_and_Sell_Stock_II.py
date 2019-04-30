@@ -34,7 +34,9 @@ class Solution():
         valley = prices[0]
         max_profit = 0
         i = 0
+        # Here it goes to len - 1 because the other while goes to i + 1
         while i < len(prices) - 1:
+            # Here it should check i again as it can go beyond the end of the array
             while i < len(prices) - 1 and prices[i] >= prices[i + 1]:
                 i += 1
             valley = prices[i]
@@ -56,6 +58,6 @@ class Solution():
                 
     
 sol = Solution()
-print sol.find_best_time_to_buy_stock([1,2,3,4,5])
-print sol.find_best_time_to_trade_optimal([1,2,3,4,5])
+print sol.find_best_time_to_buy_stock([1,2,3,4,9])
+print sol.find_best_time_to_trade_optimal([1,2,3,4,9])
 

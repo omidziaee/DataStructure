@@ -10,13 +10,15 @@ class TreeNode(object):
         self.left = None
         
 class Solution(object):
+    def __init__(self):
+        self.ans = 1
     def dfs(self, root):
         # pre order
         if not root:
             return None
         left = self.dfs(root.left)
         right = self.dfs(root.right)
-        
+        self.ans = max(self.ans, right + left + 1)
         return left.val + right.val
         
 
