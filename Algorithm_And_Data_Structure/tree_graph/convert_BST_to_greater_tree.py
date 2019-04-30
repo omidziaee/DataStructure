@@ -35,16 +35,26 @@ that the current node exists, recurse on the right subtree, visit the current no
 If we know that recursing on root.right properly updates the right subtree and that recursing on root.left properly updates the left subtree, then we are
 guaranteed to update all nodes with larger values before the current node and all nodes with smaller values after.
 '''
+# this is reverse in order traversal to visit all the higher value nodes first then traverse to the lower values
+# But you need global memory that is being shared with all of the recursions
 class Solution(object):
-    def convertBST(self, root):
-        # Preorder
-        if not root:
-            return None
-        return self.dfs(root)
-    def dfs(self, root):
-        while root:
-            left_node.val = self.dfs(root.val)
-            right_node = 
+    class Solution(object):
+        def  __init__(self):
+            self.total = 0
+        def convertBST(self, root):
+            """
+            :type root: TreeNode
+            :rtype: TreeNode
+            """
+            return self.dfs(root)
+        
+        def dfs(self, root):
+            if root:
+                self.dfs(root.right)
+                self.total += root.val
+                root.val = self.total
+                self.dfs(root.left)
+            return root
     
     
 class TreeNode(object):

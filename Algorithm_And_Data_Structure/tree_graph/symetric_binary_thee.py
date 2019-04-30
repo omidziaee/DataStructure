@@ -69,16 +69,36 @@ class Solution(object):
     
     def isSymetric_helper(self, node1, node2):
         # Base case
-        if not node1 or not node2:
+        if not node1 and not node2:
             return True
-        if node1.value != node2.value:
+        if not node1 or not node2:
             return False
         # As we basically deal with two trees we need two recursive
-        self.isSymetric_helper(node1.left, node2.right)
-        self.isSymetric_helper(node1.right, node2.left)
-        return True
+        return node1.val == node2.val and self.isSymetric_helper(node1.left, node2.right) and self.isSymetric_helper(node1.right, node2.left)
         
 
         
+class BinaryTree():
+    def __init__(self, val):
+        self.value = val
+        self.right = None
+        self.left = None
         
+        
+tree = BinaryTree(1)
+left = BinaryTree(2)
+right = BinaryTree(2)
+left_left = BinaryTree(3)
+left_right = BinaryTree(4)
+right_left = BinaryTree(4)
+right_right = BinaryTree(3)
+tree.left = left
+tree.right = right
+left.left = left_left
+left.right = left_right
+right.right = right_right
+right.left = right_left        
+
+sol = Solution()
+print sol.isSymetric_recursive(tree)
         

@@ -29,6 +29,7 @@ class Solution():
                 if profit > maxProfit:
                     maxProfit = profit
         return maxProfit
+    # wrong should not update min_price frist
     def buyStock(self, price):
         if len(price) == 0:
             return 0

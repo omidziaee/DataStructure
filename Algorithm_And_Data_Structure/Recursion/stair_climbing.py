@@ -3,6 +3,7 @@ Created on Jan 13, 2019
 
 @author: omid
 '''
+from test.badsyntax_future3 import result
 class Solution(object):
     def climbStairs(self, n):
         """
@@ -54,6 +55,23 @@ class Solution(object):
             prev = prev + prev_prev
             prev_prev = temp
         return prev
+
+    def climbStairs_mem(self, n):
+        import collections
+        memo = collections.defaultdict()
+        index = 0
+        return self.climb_stairs_mem_dic(n, index, memo)
+    def climb_stairs_mem_dic(self, n, index, memo):
+        if index == n:
+            return 1
+        if index > n:
+            return 0
+        if index in memo:
+            return memo[index]
+        result = self.climb_stairs_mem_dic(n + 1, index, memo) + self.climb_stairs_mem_dic(n + 2, index, memo)
+        memo[index] = result
+        return result
+            
             
         
             
