@@ -31,12 +31,12 @@ class Solution(object):
         for index in range(len(string)):
             head_of_perm = string[index]
             tail_of_perm = self.get_permutations(string[:index] + string[index + 1:])
-        for perm in tail_of_perm:
-            perm_list.append(head_of_perm + perm)
+            for perm in tail_of_perm:
+                perm_list.append(head_of_perm + perm)
     
         
 
-        return set(perm_list)
+        return perm_list
     
 sol = Solution()
 print sol.get_permutations('abc')
