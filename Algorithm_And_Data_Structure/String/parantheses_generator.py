@@ -63,7 +63,7 @@ class Solution(object):
         if left:
             self.dfs(left - 1, right, ans, s + "(")
         if right:
-             self.dfs(left, right - 1, ans, s + ")")
+            self.dfs(left, right - 1, ans, s + ")")
     
     def generateParenthesis(self, n):
         if n == 0:
@@ -74,9 +74,11 @@ class Solution(object):
     def dfs_helper(self, left, right, n, s, ans):
         if len(s) == 2 * n:
             return ans.append(s)
+        if right > left:
+            return 
         if left < n:
             self.dfs_helper(left + 1, right, n, s + "(", ans)
-        if right < left:
+        if right < n:
             self.dfs_helper(left, right + 1, n, s + ")", ans)
         
             

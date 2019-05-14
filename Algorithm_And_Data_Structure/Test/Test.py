@@ -1,60 +1,69 @@
-<<<<<<< HEAD
 class Solution(object):
-    def repeatedStringMatch(self, A, B):
+    def gameOfLife(self, board):
         """
-        :type A: str
-        :type B: str
-        :rtype: int
+        :type board: List[List[int]]
+        :rtype: None Do not return anything, modify board in-place instead.
         """
-        q = 1
-        while len(A) < len(B):
-            A += A
-            q += 1
-        if B in A:
-            return q
-        if B in A + A:
-            return q + 1
-        return -1
-    
-A = "abc"
-B = "cabcabca"
+        # live -> dead 4
+        # live -> live 3
+        # dead -> dead 2
+        # dead -> live 1
+        rows = len(board)
+        cols = len(board[0])
+        counter = 0
+        board_next = [[0 for _ in range(cols)] for _ in range(rows)]
+        for row in range(rows):
+            for col in range(cols):
+                if row - 1 >= 0:
+                    if board[row - 1][col] % 2 == 1:
+                        counter += 1
+                if col - 1 >= 0:
+                    if board[row][col - 1] % 2 == 1:
+                        counter += 1
+                if row - 1 >= 0 and col - 1>= 0:
+                    if board[row - 1][col - 1] % 2 == 1:
+                        counter += 1
+                if row - 1 >= 0 and col + 1 <= cols - 1:
+                    if board[row - 1][col + 1] % 2 == 1:
+                        counter += 1
+                if row + 1 <= rows - 1:
+                    if board[row + 1][col] % 2 == 1:
+                        counter += 1
+                if col - 1 >= 0 and row + 1 <= rows - 1:
+                    if board[row + 1][col - 1] % 2 == 1:
+                        counter += 1
+                if col + 1 <= cols - 1 and row + 1 <= rows - 1:
+                    if board[row + 1][col + 1] % 2 == 1:
+                        counter += 1
+                if col + 1 <= cols - 1:
+                    if board[row][col + 1] % 2 == 1:
+                        counter += 1
+                if board[row][col] % 2 == 1:
+                    if counter < 2:
+                        board_next[row][col] = 4
+                    if counter in [2, 3]:
+                        board_next[row][col] = 3
+                    if counter > 3:
+                        board[row][col] = 4
+                if board[row][col] == 0:
+                    if counter == 3:
+                        board_next[row][col] = 1
+                    else:
+                        board_next[row][col] = 2
+                counter = 0
+        for row in range(rows):
+            for col in range(cols):
+                #board_next[row][col] &= 1
+                board_next[row][col] >> 1
+        return board_next
+                
+                    
+                
 sol = Solution()
-print sol.repeatedStringMatch(A, B)
-=======
-class Solution(object):
-    def generateParenthesis(self, n):
-        """
-        :type n: int
-        :rtype: List[str]
-        """
-        S = ""
-        for i in range(n):
-            S += "()"
-        all = self.all_possible_cases(S)
-        accepted = []
-        for case in all:
-            stack_check = []
-            for char in case:
-                if char == "(":
-                    stack_check.append(char)
-                else:
-                    if stack_check:
-                        stack_check.pop()
-            if not stack_check:
-                accepted.append(case)
-        return list(set(accepted))
-        
-    def all_possible_cases(self, S):
-        if len(S) == 1:
-            return S
-        result = []
-        for i in range(len(S)):
-            head = S[i]
-            tails = self.all_possible_cases(S[:i] + S[i + 1:])
-            for tail in tails:
-                result.append(head + tail)
-        return result
-    
-sol = Solution()
-print sol.generateParenthesis(5)
->>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
+board = [
+  [0,1,0],
+  [0,0,1],
+  [1,1,1],
+  [0,0,0]
+]
+print sol.gameOfLife(board)
