@@ -33,6 +33,7 @@ class Solution(object):
         queue_keep = collections.deque()
         level = 0
         queue_keep.append((root, level))
+        # The dictionary is in order to keep the levels and values
         keep_levels = {}
         while queue_keep:
             node, level = queue_keep.popleft()
