@@ -75,8 +75,13 @@ class Test(unittest.TestCase):
 
     def test_sample_input(self):
         find_change = FindChange()
+<<<<<<< HEAD
         actual = find_change.change_possibilities(4, (1, 2, 3))
         expected = 4
+=======
+        actual = find_change.change_possibilities(5, (1, 2, 3))
+        expected = 7
+>>>>>>> 3d293dbbed8c9c64166d85fba65350f789394bde
         self.assertEqual(actual, expected)
 '''
     def test_one_way_to_make_zero_cents(self):
