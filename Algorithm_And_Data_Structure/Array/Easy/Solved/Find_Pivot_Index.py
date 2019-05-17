@@ -73,13 +73,13 @@ class Solution():
             sum += nums[index - 1]
             sum_before_index[index] = sum
         sum = 0
-        for index in range(len(nums) - 1, -1, -1):
-            sum += nums[index - 1]
-            sum_after_index[index - 1] = sum
+        for index in range(len(nums) - 2, -1, -1):
+            sum += nums[index + 1]
+            sum_after_index[index] = sum
         for index in range(len(sum_before_index)):
             if sum_before_index[index] == sum_after_index[index]:
                 return index
         return -1
     
 sol = Solution()
-print sol.find_prior_and_after([1, 7, 3, 6, 5, 6])
+print sol.find_pivot_index([1, 7, 3, 6, 5, 6])

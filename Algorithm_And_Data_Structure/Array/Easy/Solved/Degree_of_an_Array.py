@@ -44,6 +44,23 @@ class Solution(object):
             if max(dPos[key]) - min(dPos[key]) + 1 < result:
                 result = max(dPos[key]) - min(dPos[key]) + 1
         return result
+    # The following is just with one dictionary
+    def findArrDegree_one_dic(self, nums):
+        dic_index = {}
+        for i, elem in enumerate(nums):
+            if elem in dic_index:
+                dic_index[elem].append(i)
+            else:
+                dic_index[elem] = [i]
+        freq = 0
+        for key, values in dic_index.items():
+            freq = max(freq, len(values))
+        min_len = float('inf')
+        for key, values in dic_index.items():
+            if len(values) == freq:
+                min_len = min(min_len, values[-1] - values[0] + 1)
+                
+        return min_len 
     
 sol = Solution()
 print sol.findArrDegree([1, 2, 2, 3, 1])

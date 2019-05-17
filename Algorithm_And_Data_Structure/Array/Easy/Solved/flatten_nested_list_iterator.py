@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 '''
-Created on Apr 27, 2019
-
-@author: omid
 Given a nested list of integers, implement an iterator to flatten it.
 
 Each element is either an integer, or a list -- whose elements may also be integers or other lists.
@@ -20,6 +16,30 @@ Output: [1,4,6]
 Explanation: By calling next repeatedly until hasNext returns false, 
              the order of elements returned by next should be: [1,4,6].
 '''
+# """
+# This is the interface that allows for creating nested lists.
+# You should not implement it, or speculate about its implementation
+# """
+#class NestedInteger(object):
+#    def isInteger(self):
+#        """
+#        @return True if this NestedInteger holds a single integer, rather than a nested list.
+#        :rtype bool
+#        """
+#
+#    def getInteger(self):
+#        """
+#        @return the single integer that this NestedInteger holds, if it holds a single integer
+#        Return None if this NestedInteger holds a nested list
+#        :rtype int
+#        """
+#
+#    def getList(self):
+#        """
+#        @return the nested list that this NestedInteger holds, if it holds a nested list
+#        Return None if this NestedInteger holds a single integer
+#        :rtype List[NestedInteger]
+#        """
 class NestedIterator(object):
 
     def __init__(self, nestedList):
@@ -27,81 +47,34 @@ class NestedIterator(object):
         Initialize your data structure here.
         :type nestedList: List[NestedInteger]
         """
-        self.nestedList = str(nestedList)
-        self.counter = 0
+        import collections
+        self.flatten_q = collections.deque()
+        self.iter_helper(nestedList)
+        
+    def iter_helper(self, nestedList):
+        for elem in nestedList:
+            if elem.isInteger():
+                self.flatten_q.append(elem.getInteger())
+            else:
+                self.iter_helper(elem.getList())
+
     def next(self):
         """
         :rtype: int
         """
-        return self.nestedList[self.counter]
+        if not self.flatten_q:
+            return None
+        else:
+            return self.flatten_q.popleft()
+        
 
     def hasNext(self):
         """
         :rtype: bool
         """
-        while self.counter < len(self.nestedList) and self.nestedList[self.counter] != "[":
-            self.counter += 1
-        if self.counter < len(self.nestedList) and self.nestedList[self.counter] == "[":
-            while self.counter < len(self.nestedList) and self.nestedList[self.counter] == "[":
-                self.counter += 1
-            return True
-        else:
-            return False
+        return len(self.flatten_q) != 0
+        
+
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): v.append(i.next())
-sol = NestedIterator([1,[4,[6]]])
-=======
-'''
-Created on Apr 27, 2019
-
-@author: omid
-Given a nested list of integers, implement an iterator to flatten it.
-
-Each element is either an integer, or a list -- whose elements may also be integers or other lists.
-
-Example 1:
-
-Input: [[1,1],2,[1,1]]
-Output: [1,1,2,1,1]
-Explanation: By calling next repeatedly until hasNext returns false, 
-             the order of elements returned by next should be: [1,1,2,1,1].
-Example 2:
-
-Input: [1,[4,[6]]]
-Output: [1,4,6]
-Explanation: By calling next repeatedly until hasNext returns false, 
-             the order of elements returned by next should be: [1,4,6].
-'''
-class NestedIterator(object):
-
-    def __init__(self, nestedList):
-        """
-        Initialize your data structure here.
-        :type nestedList: List[NestedInteger]
-        """
-        self.nestedList = str(nestedList)
-        self.counter = 0
-    def next(self):
-        """
-        :rtype: int
-        """
-        return self.nestedList[self.counter]
-
-    def hasNext(self):
-        """
-        :rtype: bool
-        """
-        while self.counter < len(self.nestedList) and self.nestedList[self.counter] != "[":
-            self.counter += 1
-        if self.counter < len(self.nestedList) and self.nestedList[self.counter] == "[":
-            while self.counter < len(self.nestedList) and self.nestedList[self.counter] == "[":
-                self.counter += 1
-            return True
-        else:
-            return False
-# Your NestedIterator object will be instantiated and called as such:
-# i, v = NestedIterator(nestedList), []
-# while i.hasNext(): v.append(i.next())
-sol = NestedIterator([1,[4,[6]]])
->>>>>>> 3d293dbbed8c9c64166d85fba65350f789394bde

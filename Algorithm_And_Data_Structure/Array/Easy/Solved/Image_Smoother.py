@@ -2,7 +2,9 @@
 Created on Sep 27, 2018
 
 @author: USOMZIA
-Given a 2D integer matrix M representing the gray scale of an image, you need to design a smoother to make the gray scale of each cell becomes the average gray scale (rounding down) of all the 8 surrounding cells and itself. If a cell has less than 8 surrounding cells, then use as many as you can.
+Given a 2D integer matrix M representing the gray scale of an image, you need to design a smoother to make the gray scale of each cell becomes
+ the average gray scale (rounding down) of all the 8 surrounding cells and itself. If a cell has less than 8 surrounding cells, then use as 
+ many as you can.
 
 Example 1:
 Input:
@@ -48,6 +50,46 @@ class Solution(object):
                             counter_of_surroundings += 1
                 result[row_index][column_index] /= counter_of_surroundings
         return result
+    def image_smoother(self, image):
+        rows = len(image)
+        cols = len(image[0])
+        smooth_image = [[0 for _ in range(cols)] for _ in range(rows)]
+        # Traverse the matrix
+        for i in range(rows):
+            for j in range(cols):
+                sum_num = 0
+                counter = 0
+                if i > 0:
+                    counter += 1
+                    sum_num += image[i - 1][j] 
+                    if j > 0:
+                        counter += 1
+                        sum_num += image[i - 1][j - 1]
+                    if j < cols - 1:
+                        counter += 1
+                        sum_num += image[i - 1][j + 1]
+                if i < rows - 1:
+                    counter += 1
+                    sum_num += image[i + 1][j]
+                    if j < cols - 1:
+                        counter += 1
+                        sum_num += image[i + 1][j + 1]
+                    if j > 0:
+                        counter += 1
+                        sum_num += image[i + 1][j - 1]
+                if j > 0:
+                    counter += 1
+                    sum_num += image[i][j - 1]
+                if j < cols - 1:
+                    counter += 1
+                    sum_num += image[i][j + 1]
+                sum_num += image[i][j]
+                # plus one is because of itself
+                smooth_image[i][j] = sum_num / (counter + 1)
+        return smooth_image
+A = [[2,3,4],[5,6,7],[8,9,10],[11,12,13],[14,15,16]]    
+sol = Solution()
+print sol.image_smoother(A)
                             
                             
                             

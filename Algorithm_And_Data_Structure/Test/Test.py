@@ -1,69 +1,29 @@
-class Solution(object):
-    def gameOfLife(self, board):
-        """
-        :type board: List[List[int]]
-        :rtype: None Do not return anything, modify board in-place instead.
-        """
-        # live -> dead 4
-        # live -> live 3
-        # dead -> dead 2
-        # dead -> live 1
-        rows = len(board)
-        cols = len(board[0])
+class Solution():
+    def k_diff(self, nums, k):
+        unique_pairs = set()
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if abs(nums[i] - nums[j]) == k:
+                    unique_pairs.add((nums[i], nums[j]))
+        return len(unique_pairs)
+    
+    def k_diff_fast(self, nums, k):
+        unique_set = ()
+        nums = list(set(nums))
         counter = 0
-        board_next = [[0 for _ in range(cols)] for _ in range(rows)]
-        for row in range(rows):
-            for col in range(cols):
-                if row - 1 >= 0:
-                    if board[row - 1][col] % 2 == 1:
-                        counter += 1
-                if col - 1 >= 0:
-                    if board[row][col - 1] % 2 == 1:
-                        counter += 1
-                if row - 1 >= 0 and col - 1>= 0:
-                    if board[row - 1][col - 1] % 2 == 1:
-                        counter += 1
-                if row - 1 >= 0 and col + 1 <= cols - 1:
-                    if board[row - 1][col + 1] % 2 == 1:
-                        counter += 1
-                if row + 1 <= rows - 1:
-                    if board[row + 1][col] % 2 == 1:
-                        counter += 1
-                if col - 1 >= 0 and row + 1 <= rows - 1:
-                    if board[row + 1][col - 1] % 2 == 1:
-                        counter += 1
-                if col + 1 <= cols - 1 and row + 1 <= rows - 1:
-                    if board[row + 1][col + 1] % 2 == 1:
-                        counter += 1
-                if col + 1 <= cols - 1:
-                    if board[row][col + 1] % 2 == 1:
-                        counter += 1
-                if board[row][col] % 2 == 1:
-                    if counter < 2:
-                        board_next[row][col] = 4
-                    if counter in [2, 3]:
-                        board_next[row][col] = 3
-                    if counter > 3:
-                        board[row][col] = 4
-                if board[row][col] == 0:
-                    if counter == 3:
-                        board_next[row][col] = 1
-                    else:
-                        board_next[row][col] = 2
-                counter = 0
-        for row in range(rows):
-            for col in range(cols):
-                #board_next[row][col] &= 1
-                board_next[row][col] >> 1
-        return board_next
+        for i in range(len(nums)):
+            if nums[i] - k in unique_set:
+                counter += 1
+            else:
+                unique_set.add(nums[i])
                 
-                    
-                
+            
+    
 sol = Solution()
-board = [
-  [0,1,0],
-  [0,0,1],
-  [1,1,1],
-  [0,0,0]
-]
-print sol.gameOfLife(board)
+print sol.k_diff([3, 1, 4, 1, 5], 2)
+    
+                
+                
+                
+                
+                            

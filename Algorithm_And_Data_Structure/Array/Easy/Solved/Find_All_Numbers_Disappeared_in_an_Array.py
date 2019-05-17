@@ -52,7 +52,8 @@ class Solution(object):
         for num in nums:
             # This abs is for reverting back the sign as it is not possible to have negative indices
             num = abs(num)
-            # Now check the value at that index
+            # Now check the value at that index; this is needed as the repeated one get negative once and the
+            # second time if we do not check it it will happen again and it will be positive 
             if nums[num - 1] > 0:
                 nums[num - 1] *= -1
         # Like in the example [4,3,2,7,8,2,3,1] there is no 5 to make 8 negative or there is 6 to make 2 at
