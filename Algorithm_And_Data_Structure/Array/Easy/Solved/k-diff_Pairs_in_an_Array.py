@@ -27,7 +27,7 @@ All the integers in the given input belong to the range: [-1e7, 1e7].
 class Solution(object):
     # This is not good as it is o(n^2)
     def kDiffNaive(self, nums, k):
-        # However question mentioned k is integer but in test case there is -1
+        # Integer can be negative
         if k == 0:
             if len(nums) > len(set(nums)):
                 return len(nums) - len(set(nums))
@@ -48,6 +48,7 @@ class Solution(object):
     
     def kDiff(self, nums, k):
         if k == 0:
+            # This is wrong [1, 1, 1, 1] and k = 4 the result is wrong
             if len(nums) > len(set(nums)):
                 return len(nums) - len(set(nums))
             else:
@@ -62,6 +63,7 @@ class Solution(object):
                 if elem - k in nums:
                     occurance += 1
         return occurance
+    # This is right
     def kDiffMulOccur(self, nums, k):
         import collections
         dic = collections.defaultdict()

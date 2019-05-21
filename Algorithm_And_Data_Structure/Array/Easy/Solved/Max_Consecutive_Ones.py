@@ -83,9 +83,10 @@ class Solution(object):
         return max_one_counter
     
     def find_max_ones_two_pointer(self, nums):
-        # This is to find the first one position
+        has_one = False
         for k in range(len(nums)):
             if nums[k] == 1:
+                has_one = True
                 break
         left_pointer = k
         right_pointer = k
@@ -96,7 +97,7 @@ class Solution(object):
                 # it is put right_pointer += 1 then in max_one_conter we should not add
                 # one as we already step forward the index one here
                 right_pointer = i
-            else:
+            elif has_one:
                 max_one_counter = max(max_one_counter, right_pointer - left_pointer + 1)
                 left_pointer = i + 1
                 right_pointer = i + 1
@@ -106,7 +107,9 @@ class Solution(object):
             max_one_counter = max(max_one_counter, right_pointer - left_pointer + 1)
         return max_one_counter
     
-    def find_max_ones_one_pointer(self, nums):
+    # Dude this is wrong and it does not work 
+    #========Wrong=================
+    def find_max_ones_one_pointer_wrong(self, nums):
         #Todo: edge cases
         for k in range(len(nums)):
             if nums[k] == 1:
@@ -116,14 +119,42 @@ class Solution(object):
         for i in range(k, len(nums)):
             if nums[i] != 1:
                 max_one_counter = max(max_one_counter, i - left_pointer)
+                # Of counrse here you need to update the value of left pointer but with what???
+                # you can not simply put i + 1 because i + 1 who knows that the elem on index i + 1
+                # is one!! Right so this does not work here!
         if nums[-1] == 1:
             max_one_counter = max(max_one_counter, i - left_pointer + 1)
         return max_one_counter
+    
+    def find_max_consec_ones(self, nums):
+        slow_pointer = -1
+        fast_pointer = -1
+        max_length = 0
+        is_first = False
+        for i in range(len(nums)):
+            if nums[i] == 1 and not is_first:
+                slow_pointer = i
+                fast_pointer = i
+                is_first = True
+                continue
+            # if the last element is one this if will be true and then the last window of one 
+            # will not be considered for the else; that is the reason why we need to consider another 
+            # case for the last element 
+            if nums[i] == 1:
+                fast_pointer += 1
+            elif is_first:
+                max_length = max(max_length, fast_pointer - slow_pointer + 1)
+                is_first = False
+        # Dude always the two pointer method does not consider the last element if it is one
+        # the reason is the if else statement above!!
+        if nums[-1] == 1:
+            max_length = max(max_length, fast_pointer - slow_pointer + 1)
+        return max_length
                    
             
     
     
 sol = Solution()
-print sol.maxConsecOnes([1, 1 , 0 , 1])
+print sol.find_max_ones_two_pointer([0,1,1,1,0,0,1,1,1,1,0])
                             
             

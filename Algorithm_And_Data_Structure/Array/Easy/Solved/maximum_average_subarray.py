@@ -2,6 +2,14 @@
 Created on Jan 14, 2019
 
 @author: USOMZIA
+Given an array consisting of n integers, find the contiguous subarray of given length k that has the maximum average value.
+ And you need to output the maximum average value.
+
+Example 1:
+
+Input: [1,12,-5,-6,50,3], k = 4
+Output: 12.75
+Explanation: Maximum average is (12-5-6+50)/4 = 51/4 = 12.75
 '''
 class Solution(object):
     def findMaxAverage(self, nums, k):
@@ -51,6 +59,29 @@ class Solution(object):
             sum_k += nums[j] - nums[j - k]
             max_k_sum = max(max_k_sum, sum_k)
         return float(max_k_sum) / k
+    
+    def findMaxAverage_wo_if(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        if len(nums) < k:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        sum_window = 0
+        for i in range(k):
+            sum_window += nums[i]
+        sum_window_max = sum_window
+        left_pointer = 0
+        right_pointer = k
+        while right_pointer < len(nums):
+            sum_window = sum_window - nums[left_pointer] + nums[right_pointer]
+            sum_window_max = max(sum_window, sum_window_max)
+            left_pointer += 1
+            right_pointer += 1
+        return float(sum_window_max) / k
             
             
             

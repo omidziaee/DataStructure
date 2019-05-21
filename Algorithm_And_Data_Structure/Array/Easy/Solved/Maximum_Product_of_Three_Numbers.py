@@ -54,7 +54,39 @@ class Solution(object):
             max_num = max(max_num, current_num)
             min_num = min(min_num, current_num)
         return max_product_of_three
-            
+    
+    def maximumProduct_new(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) < 3:
+            return 0
+        min_1 = float('inf')
+        min_2 = float('inf')
+        max_1 = -float('inf')
+        max_2 = -float('inf')
+        max_3 = -float('inf')
+        for i in range(len(nums)):
+            if nums[i] < min_1:
+                # order is important if first min_1 = nums[i] and then min_2 = min_1
+                # then both will be nums[i]
+                min_2 = min_1
+                min_1 = nums[i]
+            elif nums[i] < min_2:
+                min_2 = nums[i]
+            if nums[i] > max_1:
+                # order of replacement is important 
+                max_3 = max_2
+                max_2 = max_1
+                max_1 = nums[i]
+            elif nums[i] > max_2:
+                max_3 = max_2
+                max_2 = nums[i]
+            elif nums[i] > max_3:
+                max_3 = nums[i]
+        return max(min_1 * min_2 * max_1 , max_1 * max_2 * max_3)
+
         
             
         

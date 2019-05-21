@@ -28,7 +28,6 @@ class Solution(object):
             else:
                 tempMax = 0
         return maxLen + 1
-<<<<<<< HEAD
     # Two_pointers
     def lenLongestIncreasing_two_pointers(self, nums):
         # Todo: Edge cases
@@ -46,8 +45,7 @@ class Solution(object):
         # Very Important!! we need to check if the last right pointer is the last element
         if right_pointer == len(nums) - 1:
             max_len = max(max_len, right_pointer - left_pointer + 1)
-            
-=======
+        return max_len
     # ===========================
     # =  Two pointers solution   =
     # ===========================
@@ -64,9 +62,6 @@ class Solution(object):
                 left_pointer = index + 1
             if index + 1 == len(nums):
                 max_len = max(max_len, index - left_pointer + 1)
-                
-                
->>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
         return max_len
     
 sol = Solution()

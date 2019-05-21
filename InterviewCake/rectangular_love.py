@@ -3,8 +3,11 @@
 Created on Dec 27, 2018
 
 @author: omid
-A crack team of love scientists from OkEros (a hot new dating site) have devised a way to represent dating profiles as rectangles on a two-dimensional plane.
-They need help writing an algorithm to find the intersection of two users' love rectangles. They suspect finding that intersection is the key to a matching algorithm so powerful it will cause an immediate acquisition by Google or Facebook or Obama or something.
+A crack team of love scientists from OkEros (a hot new dating site) have devised a way to represent dating 
+profiles as rectangles on a two-dimensional plane.
+They need help writing an algorithm to find the intersection of two users' love rectangles. They suspect 
+finding that intersection is the key to a matching algorithm so powerful it will cause an immediate acquisition by
+ Google or Facebook or Obama or something.
 '''
 
 

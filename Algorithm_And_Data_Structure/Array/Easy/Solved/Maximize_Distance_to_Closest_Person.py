@@ -71,6 +71,38 @@ class Solution(object):
         num_of_trail_zeros = len(seats) - last_one_position - 1
         return max(num_of_lead_zeros, num_of_trail_zeros, max_distace_in_between / 2)
     
+    # The following also works however it is naive because after you finished the first path you again look for 
+    # the first and last one in the array however it is possible like the above methods to find the first and last one
+    # in just one path. 
+    def find_max_distance(self, seats):
+        # Todo edgecase
+        temp_max = 0
+        global_max = 0
+        for i in range(len(seats)):
+            if seats[i] == 0:
+                temp_max += 1
+                global_max = max(global_max, temp_max)
+            else:
+                temp_max = 0
+        max_distance = global_max / 2 + 1
+        if seats[0] == 0:
+            first = 0
+            for i in range(len(seats)):
+                if seats[i] == 0:
+                    first += 1
+                else:
+                    break
+            max_distance = max(max_distance, first)
+        if seats[-1] == 0:
+            last = len(seats) - 1
+            for i in range(len(seats) - 1, -1, -1):
+                if seats[i] == 0:
+                    last -= 1
+                else:
+                    break
+            max_distance = max(max_distance, len(seats) - last - 1)
+        return max_distance
+    
 sol = Solution()
 print sol.maxDistToClosest([1,0,0,1])
                 
