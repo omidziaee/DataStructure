@@ -9,7 +9,8 @@ Rotate the image by 90 degrees (clockwise).
 
 Note:
 
-You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D 
+matrix and do the rotation.
 
 Example 1:
 
@@ -57,6 +58,8 @@ class Solution(object):
             # Transpose in place needs this starts from i
             # If there is a new matrix both loops can start
             # from zero
+            # if the second loop also starts from zero that is not good because in this case
+            # both elements swap twice and the result would be the same matrix as the original
             for j in range(i, cols):
                 temp = matrix[i][j]
                 matrix[i][j] = matrix[j][i]

@@ -71,5 +71,20 @@ class Solution(object):
         nums[slow_pointer + 1:] = [None for _ in range(len(nums) - slow_pointer)]
         return slow_pointer + 1
     
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # relocate the last non_repeated element to the last non_repeated index similar to move zeros problem!!
+        last_unrepeated_place = 0
+        for i in range(1,len(nums)):
+            if nums[i] != nums[i - 1]:
+                last_unrepeated_place += 1
+                nums[last_unrepeated_place] = nums[i]
+        for i in range(last_unrepeated_place + 1, len(nums)):
+            nums.pop()
+        return len(nums)
+    
 sol = Solution()
 print sol.remove_duplicates_easier([1, 1, 2])
