@@ -1,29 +1,12 @@
 class Solution():
-    def k_diff(self, nums, k):
-        unique_pairs = set()
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                if abs(nums[i] - nums[j]) == k:
-                    unique_pairs.add((nums[i], nums[j]))
-        return len(unique_pairs)
-    
-    def k_diff_fast(self, nums, k):
-        unique_set = ()
-        nums = list(set(nums))
-        counter = 0
-        for i in range(len(nums)):
-            if nums[i] - k in unique_set:
-                counter += 1
-            else:
-                unique_set.add(nums[i])
+    def remove_duplicate(self, nums):
+        last_non_repeated = 0
+        for i in range(1, len(nums)):
+            if nums[i - 1] != nums[i]:
+                nums[last_non_repeated] = nums[i]
+                last_non_repeated += 1
                 
-            
+        return nums
     
 sol = Solution()
-print sol.k_diff([3, 1, 4, 1, 5], 2)
-    
-                
-                
-                
-                
-                            
+print sol.remove_duplicate([1, 1, 2])

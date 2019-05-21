@@ -48,6 +48,7 @@ class Solution(object):
         # Start from bigger is much easier as we do end up which easier logic
         while m > 0 and n > 0:
             if nums1[m - 1] >= nums2[n - 1]:
+                # If nums one has not been initialized with the zeros to the left this won't work!!!
                 nums1[m + n - 1] = nums1[m - 1]
                 m -= 1
             else:
@@ -81,9 +82,11 @@ class Solution(object):
             # drop one zero from the end for each insert.
             if nums1[pointer_to_traverse_nums1] >= nums2[pointer_to_traverse_nums2]:
                 nums1.insert(pointer_to_traverse_nums1, nums2[pointer_to_traverse_nums2])
+                # Increase both itterators as we move forward on nums1
                 pointer_to_traverse_nums1 += 1
                 pointer_to_traverse_nums2 += 1
-                nums1.pop()
+                # pop one zero from the end as we insert a number to the end of nums1
+                #nums1.pop() # This is not necessary !!!!
             # This is an else why did you put another if here shame on you!!
             # If the element of the first list is less than the elment of the 
             else:
@@ -92,7 +95,7 @@ class Solution(object):
         return nums1
             
             
-num1 = [2, 0]
-num2 = [1]  
+num1 = [1, 2, 10, 0, 0, 0, 0, 0, 0, 0]
+num2 = [3, 6, 8, 12, 13, 14, 15]  
 sol = Solution()
-print sol.merge(num1, 1, num2, 1)    
+print sol.merge(num1, 3, num2, 7)    
