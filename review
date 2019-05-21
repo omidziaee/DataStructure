@@ -4,6 +4,12 @@ degree_of_an_array
 find_all_anagram_in_string
 find_all_numbers_disappeared_in_an_array
 k_diff_pairs_in_array
+<<<<<<< HEAD
 maximum_distance_to_closest_person
 maximum_average_sub_array
 
+=======
+maximum_subarray
+merged_sorted_array
+Non_decreasing_array
+>>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git

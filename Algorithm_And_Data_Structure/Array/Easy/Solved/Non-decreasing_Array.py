@@ -33,8 +33,10 @@ class Solution(object):
         place_of_non_monotonicity = None
         for index in range(len(nums) - 1):
             if nums[index] > nums[index + 1]:
+                # if it is not None it means it happened before
                 if place_of_non_monotonicity != None:
                     return False
+                # The first time it happened we keep the index 
                 place_of_non_monotonicity = index
         return ((place_of_non_monotonicity == None) or \
         (place_of_non_monotonicity == 0) or \

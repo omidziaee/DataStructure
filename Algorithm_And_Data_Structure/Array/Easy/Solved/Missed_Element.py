@@ -6,6 +6,8 @@ Created on Jul 31, 2018
 def missedElem(arr1, arr2):
     seen = set()
     for elem in arr1:
+        # This is not good because time is o(m * n)
+        # One way to avoid this is create a set out of arr2 then this would be o(1)
         if elem in arr2:
             seen.add(elem)
         else:
@@ -24,7 +26,7 @@ def missElemFast(arr1, arr2):
         sum -= elem
     if sum != 0:
         return sum
-    
+# Always missing elem is similar to anagram and it should be through hashmap!!
 def miss_elem_faster(arr1, arr2):
     import collections
     d = collections.defaultdict()
