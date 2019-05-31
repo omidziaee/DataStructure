@@ -15,6 +15,7 @@ For example, given n = 3, a solution set is:
 ]
 '''
 class Solution(object):
+    # This one is time limit exceed
     def generateParenthesis_whole_case(self, n):
         """
         :type n: int
@@ -63,33 +64,27 @@ class Solution(object):
         if left:
             self.dfs(left - 1, right, ans, s + "(")
         if right:
-<<<<<<< HEAD
-             self.dfs(left, right - 1, ans, s + ")")
-=======
             self.dfs(left, right - 1, ans, s + ")")
->>>>>>> 3d293dbbed8c9c64166d85fba65350f789394bde
     
     def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
         if n == 0:
             return []
         ans = []
-        self.dfs_helper(0, 0, n, "", ans)
+        self.paran_gen(n, 0, 0, "", ans)
         return ans
-    def dfs_helper(self, left, right, n, s, ans):
+    def paran_gen(self, n, left, right, s, ans):
         if len(s) == 2 * n:
             return ans.append(s)
-<<<<<<< HEAD
-        if left < n:
-            self.dfs_helper(left + 1, right, n, s + "(", ans)
-        if right < left:
-=======
         if right > left:
-            return 
+            return
         if left < n:
-            self.dfs_helper(left + 1, right, n, s + "(", ans)
+            self.paran_gen(n, left + 1, right, s + "(", ans)
         if right < n:
->>>>>>> 3d293dbbed8c9c64166d85fba65350f789394bde
-            self.dfs_helper(left, right + 1, n, s + ")", ans)
+            self.paran_gen(n, left, right + 1, s + ")", ans)
         
             
             

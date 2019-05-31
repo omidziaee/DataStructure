@@ -71,8 +71,8 @@ class Solution(object):
         while i < len(the_nums):
             if the_nums[i] == 1:
                 i += 1
-                if i+1 == len(the_nums) - 1:
-                    return True
+            if i+1 == len(the_nums) - 1:
+                return True
             i += 1
         return False
 

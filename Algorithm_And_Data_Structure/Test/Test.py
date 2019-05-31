@@ -1,31 +1,30 @@
-class Solution():
-    def rotate_in_place(self, matrix):
-        if len(matrix) == 0:
-            return []
-        rows = len(matrix)
-        cols = len(matrix[0])
-        for i in range(rows):
-            for j in range(i, cols):
-                temp = matrix[i][j]
-                matrix[i][j] = matrix[j][i]
-                matrix[j][i] = temp
-        # Now reverse the elements of each row
-        # Here it is a matrix but in general no
-        rows = len(matrix)
-        cols = len(matrix[0])
-        for i in range(rows):
-            self.reverse_row(matrix[i])
-        return matrix
-    def reverse_row(self, row):
-        right = len(row) - 1
-        left = 0
-        while left <= right:
-            temp = row[left]
-            row[left] = row[right]
-            row[right] = temp
-            left += 1
-            right -= 1
-    
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        # This is similat to find the top k frequent elements
+        # Whenever we need to sort a hashmap, we should use bucket sort
+        dic_count = {}
+        res = ""
+        for elem in s:
+            if elem in dic_count:
+                dic_count[elem] += 1
+            else:
+                dic_count[elem] = 1
+        # at most all the chars are repeated so the last inner list is that char
+        bucket = [[] for _ in range(len(s))]
+        for key, value in dic_count.items():
+            # List is zero indexd so all the chars in the first inner list with index
+            # zero are repeated one time
+            bucket[value - 1].append(key)
+        # Now traverse the bucket backward as we want to show the max first
+        for i in range(len(bucket) - 1, -1, -1):
+            if len(bucket[i]) != 0:
+                # multiply the elem and the index plus one which is the number of occurance
+                for char in bucket[i]:
+                    res += char * (i + 1)
+        return res
 sol = Solution()
-print sol.rotate_in_place([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-            
+print sol.frequencySort("aaaccc")

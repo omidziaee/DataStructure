@@ -65,6 +65,23 @@ class Solution(object):
                 # we need to add it by one
                 result.append(index + 1)
         return result
+    
+    def findDisappearedNumbers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        res = []
+        for i, num in enumerate(nums):
+            # If it is already negative do not touch it as the next time we want to 
+            # change the negative number it is because of the repeated items
+            if nums[abs(num) - 1] > 0:
+                nums[abs(num) - 1] *= -1
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                res.append(i + 1)
+                
+        return res
         
                 
             

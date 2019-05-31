@@ -59,6 +59,35 @@ class Solution(object):
             reverse_start += 1
         
         return string_to_reverse
+    
+    def reverseStr_new(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        # Doing it with the (1) is also true but it takes a lot more time
+        # with (1) it just send a lot of useless cases to the reverse function
+        # I mean the cases that already passed the end of the list!!!
+        s_list = list(s)
+        # (1) for i in range(len(s)):
+        #(start, stop, step)
+        for i in range(0, len(s_list), 2 * k):
+            # (1) left = 2 * k * i
+            left = i
+            # (1) right = 2 * k * i + k - 1
+            right = i + k - 1
+            self.reverse_str(left, right, s_list)
+        return ''.join(s_list)
+    def reverse_str(self, left, right, s_list):
+        if right > len(s_list) - 1:
+            right = len(s_list) - 1
+        while left <= right:
+            temp = s_list[left]
+            s_list[left] = s_list[right]
+            s_list[right] = temp
+            left += 1
+            right -= 1
         
     
 sol = Solution()

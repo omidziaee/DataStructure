@@ -2,9 +2,11 @@
 Created on Sep 27, 2018
 
 @author: USOMZIA
-Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target
+ number.
 
-The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than 
+index2.
 
 Note:
 
@@ -43,5 +45,21 @@ class Solution(object):
                     return [left_pointer + 1, right_pointer + 1] 
                 
         return []
+    
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        d_index = {}
+        for i in range(len(numbers)):
+            if numbers[i] not in d_index:
+                d_index[numbers[i]] = i + 1
+        for i in range(len(numbers)):
+            if target - numbers[i] in d_index:
+                # this check is for when target is twice than an element in the numbers
+                if i + 1 != d_index[target - numbers[i]]:
+                    return [min(i + 1, d_index[target - numbers[i]]), max(i + 1, d_index[target - numbers[i]])]
                    
     

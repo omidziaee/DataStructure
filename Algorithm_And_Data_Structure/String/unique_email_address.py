@@ -33,6 +33,23 @@ class Solution():
                 name = name[:name.index('+')]
             unique_emails.add(name.replace('.','') + '@' + domain)
         return len(unique_emails)
+    def numUniqueEmails_new(self, emails):
+        """
+        :type emails: List[str]
+        :rtype: int
+        """
+        unique_emails = set()
+        for email in emails:
+            local, domain = email.split("@")
+            # string is immutable dude!!
+            local = local.replace(".", "")
+            if "+" in local:
+                plus_indx = local.index("+")
+                local = local[:plus_indx]
+            new_email = local + "@" + domain
+            unique_emails.add(new_email)
+        return len(unique_emails)
+    
 emails = ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]    
 sol = Solution()
 print sol.numUniqueEmails(emails)

@@ -41,5 +41,5 @@ class Solution():
 import time
 start_time = time.time()
 sol = Solution()
-print sol.find_fib_dp2(100)
+print sol.find_fib(2)
 print time.time() - start_time                
