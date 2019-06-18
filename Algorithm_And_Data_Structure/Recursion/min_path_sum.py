@@ -41,3 +41,12 @@ class Solution():
         res = grid[i][j] + min(self.find_min_path(grid, i + 1, j), self.find_min_path(grid, i, j + 1))
         self.memo[(i, j)] = res
         return res
+    def min_path_dp(self, grid):
+        dp = [[0 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+        # The one that we know is the last one in the corner right
+        row = len(grid) - 1
+        col = len(grid[0]) - 1
+        dp[row][col] = grid[row][col]
+        for i in range(row, -1, -1):
+            for j in range(col, -1, -1):
+                dp[i][j] = grid[i][j] + 
