@@ -35,7 +35,7 @@ class LRUCache(object):
         """
         self.cache = {}
         self.capacity = capacity
-        self.LRU = None
+        self.LRU = []
         
 
     def get(self, key):
@@ -56,10 +56,10 @@ class LRUCache(object):
         :rtype: None
         """
         if len(self.cache) >= self.capacity:
-            del self.cache[self.LRU]
+            del self.cache[self.LRU[-1]]
         else:
             self.cache[key] = value
-            self.LRU = value
+            self.LRU.append(LRU)
         
 
 
