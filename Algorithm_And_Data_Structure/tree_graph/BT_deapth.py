@@ -4,7 +4,7 @@ Created on Apr 3, 2019
 @author: USOMZIA
 '''
 class Solution(object):
-    def maxDepth(self, root):
+    def maxDepth_stack(self, root):
         """
         :type root: TreeNode
         :rtype: int
@@ -36,3 +36,21 @@ class Solution(object):
         left_depth = self.maxDepth(root.left)
         right_depth = self.maxDepth(root.right)
         return 1 + max(left_depth, right_depth)
+    
+class TreeNode():
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+tree = TreeNode(3)
+left = TreeNode(2)
+right = TreeNode(5)
+left_left = TreeNode(1)
+left_right = TreeNode(4)
+tree.left = left
+tree.right = right
+left.right = left_right
+left.left = left_left
+
+sol = Solution()
+print sol.maxDepth(tree)
