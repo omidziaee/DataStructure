@@ -27,15 +27,16 @@ cache.get(1);       // returns -1 (not found)
 cache.get(3);       // returns 3
 cache.get(4);       // returns 4
 '''
+# LRU means whatever we want to do first bring it in front or pop it up and add it again in front
 class LRUCache(object):
 
     def __init__(self, capacity):
         """
         :type capacity: int
         """
-        self.cache = {}
+        import collections
+        self.cache = collections.OrderedDict()
         self.capacity = capacity
-        self.LRU = []
         
 
     def get(self, key):
@@ -44,6 +45,10 @@ class LRUCache(object):
         :rtype: int
         """
         if key in self.cache:
+            # find it, pop it and add it to front again
+            val = self.cache[key]
+            self.cache.pop(key)
+            self.cache[key] = val
             return self.cache[key]
         else:
             return -1
@@ -55,11 +60,13 @@ class LRUCache(object):
         :type value: int
         :rtype: None
         """
-        if len(self.cache) >= self.capacity:
-            del self.cache[self.LRU[-1]]
-        else:
-            self.cache[key] = value
-            self.LRU.append(LRU)
+        if key in self.cache:
+            self.cache.pop(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            # if last = False it is FIFO otherwise it is LIFO
+            self.cache.popitem(last = False)
+        
         
 
 
