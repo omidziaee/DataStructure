@@ -1,5 +1,6 @@
 class Solution():
     #==================[1]Subsets======================================
+    # All elements are unique
     def subsets(self, nums):
         if not nums or len(nums) == 0:
             return nums
@@ -130,7 +131,7 @@ class Solution():
 import time
 start_time = time.time()
 sol = Solution()
-print sol.combination_sum_no_repeat([2, 5, 2, 1, 2], 5)
+print sol.subsets_repeat([1,2,2])
 print time.time() - start_time
             
 
