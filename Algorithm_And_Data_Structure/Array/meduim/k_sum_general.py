@@ -24,17 +24,19 @@ class Solution():
                 s = nums[l] + nums[r]
                 if s == target:
                     ans.append(curr_path + [nums[l], nums[r]])
+                    while l < r and nums[l] == nums[l + 1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r - 1]:
+                        r -= 1
                     l += 1
                     r -= 1
-                    while l < len(nums) and nums[l] == nums[l - 1]:
-                        l += 1
-                    while r > 0 and nums[r] == nums[r - 1]:
-                        r -= 1
                 elif target > s:
                     l += 1
                 else:
                     r -= 1
         for i in range(len(nums)):
+            if nums[i] * k > target or nums[len(nums) - 1] * k < target:
+                continue
             if i == 0 or i > 0 and nums[i] != nums[i - 1]:
                 self.helper_old(nums[i + 1:], ans, curr_path + [nums[i]], target - nums[i], k - 1)
         return ans
@@ -49,25 +51,28 @@ class Solution():
                 s = nums[l] + nums[r]
                 if s == target:
                     ans.append(curr_path + [nums[l], nums[r]])
+                    while l < r and nums[l] == nums[l + 1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r - 1]:
+                        r -= 1
                     l += 1
                     r -= 1
-                    while l < len(nums) and nums[l] == nums[l - 1]:
-                        l += 1
-                    while r > 0 and nums[r] == nums[r - 1]:
-                        r -= 1
                 elif target > s:
                     l += 1
                 else:
                     r -= 1
         for i in range(start_index, len(nums) - k + 1):
-            if i == start_index or i > start_index and nums[i] == nums[i - 1]:
+            # without this TLE
+            if nums[i] * k > target or nums[len(nums) - 1] * k < target:
+                continue
+            if i == start_index or i > start_index and nums[i] != nums[i - 1]:
                 self.helper(nums, ans, curr_path + [nums[i]], target - nums[i], k - 1, i + 1)
             #if i > start_index and nums[i] == nums[i - 1]:
             #    continue 
             #self.helper(nums, ans, curr_path + [nums[i]], target - nums[i], k - 1, i + 1)
         return ans
     
-nums = [1,0,-1,0,-2,2]
+nums = [-3,-2,-1,0,0,1,2,3]
 #nums = [-1, -2, -7, -3, 0]
 #nums = [0, 0, 0, 0]
 target = 0
