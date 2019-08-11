@@ -4,7 +4,8 @@ Created on Aug 3, 2019
 @author: omid
 '''
 class Solution(object):
-    def fourSum(self, nums, target):
+    #=======================================================================
+    def fourSum_works_but_TLE(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
@@ -28,6 +29,9 @@ class Solution(object):
                 continue
             self.helper(nums, ans, curr_path + [nums[i]], target - nums[i], i + 1)
         return ans
+    #=========================================================================
+    
+    
     
 nums = [1,-2,-5,-4,-3,3,3,5]
 target = -11
