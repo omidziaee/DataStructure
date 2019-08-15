@@ -14,6 +14,7 @@ class Solution():
         #self.helper_old(nums, ans, curr_path, target, k)
         self.helper(nums, ans, curr_path, target, k, 0)
         return ans
+    
     def helper_old(self, nums, ans, curr_path, target, k):
         if k < 2 or k > len(nums):
             return None

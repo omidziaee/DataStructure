@@ -41,7 +41,7 @@ class Solution(object):
         return counter
     def helper(self, picture, x, y):
         #base case
-        if x < 0 or x > len(picture) - 1 or y < 0 or y > len(picture[0]):
+        if x < 0 or x > len(picture) - 1 or y < 0 or y > len(picture[0]) - 1:
             return False
         for direction in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
             nx, ny = x, y
