@@ -23,11 +23,32 @@ class Solution(object):
         :type B: List[List[int]]
         :rtype: List[List[int]]
         """
+        i, j= 0, 0
+        combined = []
+        while i < len(A) and j < len(B):
+            start_A, end_A = A[i]
+            start_B, end_B = B[j]
+            lo = max(start_A, start_B)
+            hi = min(end_A, end_B)
+            if lo <= hi:
+                combined.append([lo, hi])
+            # remove the interval with the smallest endpoint
+            if A[i][1] < B[j][1]:
+                i += 1
+            else:
+                j += 1
+            
+        return combined
+                
+                
+                
         
                 
     
 A = [[0,2],[5,10],[13,23],[24,25]]
 B = [[1,5],[8,12],[15,24],[25,26]]
+# A = [[14,16]]
+# B = [[7,13],[16,20]]
 sol = Solution()
 print sol.intervalIntersection(A, B)
                 

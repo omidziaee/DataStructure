@@ -67,7 +67,7 @@ class Solution():
                 return current_prod
             # traverse over all the neighbors
             visited.add(node)
-            for neighbor, value in self.graph[begin]:
+            for neighbor, value in self.graph[node]:
                 if neighbor not in visited:
                     keep_nodes.append((neighbor, current_prod * value))
         # finished traversing if it is not found return -1
