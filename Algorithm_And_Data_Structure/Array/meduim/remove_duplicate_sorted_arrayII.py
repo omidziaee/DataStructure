@@ -60,8 +60,8 @@ class Solution(object):
                 lst_non_repeating_indx += 1
                 nums[lst_non_repeating_indx] = nums[i]
                 counter = 1
-            else:
-                if counter < 2:
+            else: # we have repeated element
+                if counter < 2: # If it is just a pair we deal with it like just one
                     lst_non_repeating_indx += 1
                     counter += 1
                     nums[lst_non_repeating_indx] = nums[i]
