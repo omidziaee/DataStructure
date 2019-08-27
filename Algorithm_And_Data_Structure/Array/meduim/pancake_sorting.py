@@ -26,3 +26,25 @@ Output: []
 Explanation: The input is already sorted, so there is no need to flip anything.
 Note that other answers, such as [3, 3], would also be accepted.          
 '''
+class Solution(object):
+    def pancakeSort(self, A):
+        ans = []
+
+        N = len(A)
+        B = sorted(range(1, N+1), key = lambda i: -A[i-1])
+        for i in B:
+            for f in ans:
+                if i <= f:
+                    # After each f flip the element at place i will move to f + 1 - i
+                    # [4, 2, 3, 1] after 4 flip -> [1, 3, 2, 4] so 3 was at index 3 (1 start
+                    # not 0). Now after 4 flip it goes to 4 + 1 - 3 = 2
+                    i = f+1 - i
+            ans.extend([i, N])
+            # The last placement should decrease by one after each iteration
+            N -= 1
+
+        return ans
+    
+A = [3,2,4,1]
+sol = Solution()
+print sol.pancakeSort(A)
