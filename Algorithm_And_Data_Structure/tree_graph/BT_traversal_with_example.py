@@ -48,6 +48,34 @@ class Solution():
         res.append(root.val)
         self.helper(root.right, res)
         return res
+    
+    def dfs_postorder_rec(self, root):
+        if not root:
+            return []
+        return self.helper_postorder(root)
+    def helper_postorder(self, root):
+        if not root:
+            return []
+        return self.helper_postorder(root.left) + self.helper_postorder(root.right) + [root.val]
+    def dfs_postorder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        stack_keep_nodes = []
+        stack_keep_values = []
+        
+        while root or stack_keep_nodes:
+            if root:
+                stack_keep_nodes.append(root)
+                stack_keep_values.insert(0, root.val) # start from the root values and put them at the end
+                root = root.right # traverse the right dont worry the values go to the start so right is after left
+            else:
+                node = stack_keep_nodes.pop()
+                root = node.left # traverse left however the way that the values inserts in the value stack first left values get in front
+        return stack_keep_values
                 
         
 class TreeNode():
@@ -80,7 +108,7 @@ right.left.right = right_left_right
 right.right = right_right
 
 sol = Solution()
-print sol.dfs_inorder_rec_2(root)
+print sol.dfs_postorder(root)
 
 
         
