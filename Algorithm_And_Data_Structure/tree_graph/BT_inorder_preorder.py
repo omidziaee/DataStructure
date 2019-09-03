@@ -82,30 +82,32 @@ class Solution():
         root.right = self.helper(preorder, inorder, in_end, ind + 1, pre_start + ind + 1 - in_start)
         return root
 
-inorder = [4, 9, 5, 3, 6, 12, 7, 8, 1]
-preorder = [3, 9, 4, 5, 8, 12, 6, 7, 1]
+inorder = [4, 5, 6, 7, 2, 1, 8, 9, 3, 10]
+preorder = [1, 2, 4, 5, 7, 6, 3, 8, 9, 10]
 sol = Solution()
 root_new = sol.buildTree(preorder, inorder)
 print sol.print_nodes(root_new)
 
 
-root = TreeNode(3)
-left = TreeNode(9)
-right = TreeNode(8)
+root = TreeNode(1)
+left = TreeNode(2)
+right = TreeNode(3)
 left_left = TreeNode(4)
-left_right = TreeNode(5)
-right_left = TreeNode(12)
-right_right = TreeNode(1)
-right_left_left = TreeNode(6)
-right_left_right = TreeNode(7)
+left_left_left = TreeNode(5)
+left_left_right = TreeNode(6)
+left_left_left_right = TreeNode(7)
+right_left = TreeNode(8)
+right_left_right = TreeNode(9)
+right_right = TreeNode(10)
 root.left = left
 root.right = right
-left.left = left_left 
-left.right = left_right
+left.left = left_left
+left.left.left = left_left_left
+left.left.right = left_left_right
+left.left.left.right = left_left_left_right
 right.left = right_left
-right.right = right_right
-right.left.left = right_left_left
 right.left.right = right_left_right
+right.right = right_right
 
 #sol = Solution()
 #print sol.print_nodes(root)
