@@ -31,6 +31,7 @@ class Solution(object):
         right = len(nums) - 1
         # It should be less than or equal to to be able to handle the one element array [5] and target is 5
         while left <= right:
+            # mid = left + (right - left) / 2
             mid = (right + left) / 2
             if nums[mid] == target:
                 return mid

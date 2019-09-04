@@ -54,9 +54,11 @@ class Solution(object):
         """
         from collections import Counter
         from itertools import combinations
+        # by_user = collections.coutner(list)
         by_user = {}
         # sort is important for the same user it should come in based on the timestamp
         for t, u, w in sorted(zip(timestamp, username, website)):
+            #by_user[u].append(w)
             if u in by_user:
                 by_user[u].append(w)
             else:

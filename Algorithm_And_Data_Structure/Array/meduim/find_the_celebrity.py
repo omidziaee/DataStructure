@@ -70,11 +70,12 @@ class Solution(object):
             if knows(candidate, i) or not(knows(i, candidate)):
                 return -1
             # Check for the larger numbers
-            for i in range(candidate + 1, n):
+        for i in range(candidate + 1, n):
                 if not knows(i, candidate):
                     return -1
         return candidate
                 
+        
         
 sol = Solution()
 print sol.findCelebrity(3)
