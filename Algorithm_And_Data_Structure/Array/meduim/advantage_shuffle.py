@@ -22,18 +22,20 @@ class Solution(object):
         :type B: List[int]
         :rtype: List[int]
         """
+        # sort the first array and find the place of second array elements in the first one
+        # with bisect but it should be bisect_right!!
         import bisect
         ans = []
         A.sort()
         for num in B:
-            indx = bisect.bisect_left(A, num)
+            indx = bisect.bisect_right(A, num)
             if indx == len(A):
                 ans.append(A.pop(0))
             else:
                 ans.append(A.pop(indx))
         return ans
     
-A = [12,24,8,32,24]
-B = [13,25,32,11,11]
+A = [2,0,4,1,2]
+B = [1,3,0,0,2]
 sol = Solution()
 print sol.advantageCount(A, B)
