@@ -28,3 +28,30 @@ Input: A = [2,1,5,6,0,9,5,0,3,8], L = 4, M = 3
 Output: 31
 Explanation: One choice of subarrays is [5,6,0,9] with length 4, and [3,8] with length 3.
 '''
+class Solution():
+    def maxSumTwoNoOverlap(self, A, L, M):
+        """
+        :type A: List[int]
+        :type L: int
+        :type M: int
+        :rtype: int
+        """
+        dp = [0 for _ in range(len(A))]
+        dp[0] = A[0]
+        for i in range(1, len(A)):
+            dp[i] = dp[i - 1] + A[i]
+        res, max_L, max_M = dp[L + M - 1], dp[L - 1], dp[M - 1]
+        for i in range(L + M, len(A)):
+            # Whatever now and shift one forward
+            max_L = max(max_L, dp[i - M] - dp[i - L - M])
+            max_M = max(max_M, dp[i - L] - dp[i - L - M])
+            # Now either max_L is first 
+            res = max(res, max_L + dp[i] - dp[i - M], max_M + dp[i] - dp[i - L])
+        return res
+
+A = [2,1,5,6,0,9,5,0,3,8] 
+L = 4
+M = 3   
+sol = Solution()
+print sol.maxSumTwoNoOverlap(A, L, M)
+    
