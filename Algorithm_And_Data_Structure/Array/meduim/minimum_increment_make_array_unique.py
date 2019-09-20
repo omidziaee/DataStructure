@@ -65,6 +65,24 @@ class Solution(object):
             elif repeated_items and i not in dic_counter:
                 ans += i - repeated_items.pop()
         return ans
+    
+    def minIncrementForUnique_second(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        counter = [0 for _ in range(100000)]
+        for elem in A:
+            counter[elem] += 1
+        ans, taken = 0, 0
+        for i in range(len(counter)):
+            if counter[i] > 1:
+                taken += counter[i] - 1
+                ans -= i * (counter[i] - 1)
+            elif taken > 0 and counter[i] == 0:
+                taken -= 1
+                ans += i
+        return ans
                 
 
 A = [3,2,1,2,1,7,2]   
