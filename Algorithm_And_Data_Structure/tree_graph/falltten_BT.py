@@ -31,7 +31,6 @@ class TreeNode():
         self.left = None
         self.right = None
 class Solution():
-    class Solution(object):
     def __init__(self):
         self.prev = None
     def flatten(self, root):

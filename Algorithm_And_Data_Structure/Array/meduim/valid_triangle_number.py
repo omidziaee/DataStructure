@@ -27,21 +27,58 @@ class Solution():
         for i in range(len(nums) - 2):
             for j in range(i + 1, len(nums) - 1):
                 for k in range(j + 1, len(nums)):
-                    if nums[i] + nums[j] < nums[k] and nums[i] + nums[k] < nums[j] and nums[j] + nums[k] < nums[i]:
+                    if nums[i] + nums[j] > nums[k] and nums[i] + nums[k] > nums[j] and nums[j] + nums[k] > nums[i]:
                         counter += 1
         return counter
     
-    def triangleNumber(self, nums):
+    def triangleNumber_does_not_work(self, nums):
         import bisect
         if len(nums) < 3:
             return 0
         counter = 0
         nums.sort()
-        for i in range(2, len(nums)):
-            index = bisect.bisect_right(nums, nums[i] + nums[i - 1])
-            if len(nums) > index and index > 0 and nums[index] != nums[index - 1]:
-                counter += 1
+        for i in range(len(nums) - 1):
+            for j in range(i + 1, len(nums)):
+                index = bisect.bisect_right(nums, nums[i] + nums[i - 1])
+                while nums[index] == nums[j] and index:
+                    index -= 1
+                counter += index - j
         return counter
     
+    def triangleNumber(self, nums):
+        if len(nums) < 3:
+            return 0
+        # Linear scan all the numbers 
+        nums.sort()
+        counter = 0
+        for i in range(len(nums) - 2):
+            k = i + 2
+            for j in range(i + 1, len(nums) - 1):
+                # Check the first number just if this one is not zero the rest of it won't be zero right?!
+                if nums[i] != 0:
+                    while k < len(nums) and nums[i] + nums[j] > nums[k]: # check the k here because inside the loop you increase it by one
+                        k += 1
+                    # minus one because we already did k = j + 1
+                    counter += k - j - 1
+        return counter
+    
+    def triangleNumber_3sum(self, nums):
+        if len(nums) < 3:
+            return 0
+        nums.sort()
+        counter = 0
+        for i in range(len(nums) - 1, 1, -1):
+            # So for each inner loop we start scan from begining
+            l = 0
+            r = i - 1
+            while r > l:
+                if nums[l] + nums[r] > nums[i]:
+                    counter += r - l
+                    r -= 1
+                else:
+                    l += 1
+        return counter
+                    
+    
 sol = Solution()
-print sol.triangleNumber([2, 3, 2, 4])
+print sol.triangleNumber([48,66,61,46,94,75])
