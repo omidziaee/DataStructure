@@ -62,7 +62,7 @@ class Solution(object):
             nums[start] += inc
             if end < length - 1:
                 nums[end + 1] -= inc
-        # Now create the cumulative sum
+        # Now change each number to the current one plus one before because the between them it is zero
         for i in range(1, length):
             nums[i] += nums[i - 1]
         return nums
