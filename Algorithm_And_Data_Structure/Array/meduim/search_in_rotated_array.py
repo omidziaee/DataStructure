@@ -39,6 +39,8 @@ class Solution(object):
                 return True
             while l < mid and nums[l] == nums[mid]:
                 l += 1
+            while r > mid and nums[r] == nums[mid]:
+                r -= 1
             if nums[l] <= nums[mid]:
                 if nums[l] <= target < nums[mid]:
                     r = mid - 1
