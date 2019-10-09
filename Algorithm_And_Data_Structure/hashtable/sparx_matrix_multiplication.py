@@ -113,9 +113,9 @@ class Solution(object):
                     if i not in table_A: table_A[i] = {}
                     table_A[i][j] = ele
         for i, row in enumerate(B):
+            if i not in table_B: table_B[i] = {}
             for j, ele in enumerate(row):
                 if ele:
-                    if i not in table_B: table_B[i] = {}
                     table_B[i][j] = ele
         C = [[0 for j in range(l)] for i in range(m)]
         for i in table_A:

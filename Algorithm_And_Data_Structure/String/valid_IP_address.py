@@ -46,7 +46,7 @@ Output: "Neither"
 Explanation: This is neither a IPv4 address nor a IPv6 address.
 '''
 class Solution(object):
-    def validIPAddress(self, IP):
+    def validIPAddress_not_working(self, IP):
         """
         :type IP: str
         :rtype: str
@@ -65,12 +65,43 @@ class Solution(object):
                     return "Neither"
         if is_IPv6:
             ip6_list = IP.split(":")
-            if len(ip6_list)  8:
+            if len(ip6_list) != 8:
                 return "Neither"
         if is_IPv4:
             return "IPv4"
         if is_IPv6:
             return "IPv6"
+        
+    def validIPAddress(self, IP):
+        """
+        :type IP: str
+        :rtype: str
+        """
+        def is_ip4(ip):
+            # we put it in try and except if it has alphabet
+            try:
+                # str(int(01)) = 1 carefull
+                if str(int(ip)) == ip and int(ip) >= 0 and int(ip) < 256:
+                    return True
+            except:
+                return False
+        def is_ip6(ip):
+            if len(ip) > 4:
+                return False
+            try:
+                if int(ip, 16) >= 0 and ip[0] != "-":
+                    return True
+            except:
+                return False
+                
+        
+        if IP.count(".") == 3 and all(is_ip4(i) for i in IP.split(".")):
+            return "IPv4"
+        if IP.count(":") == 7 and all(is_ip6(i) for i in IP.split(":")):
+            return "IPv6"
+        return "Neither"
+    
+    
 IP = "172.16.254.256"
 sol = Solution()
 print sol.validIPAddress(IP)
