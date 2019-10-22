@@ -48,6 +48,10 @@ class Solution(object):
         def dfs(graph, end_word, begin_word):
             import collections
             keep_deque = collections.deque()
+<<<<<<< HEAD
+=======
+            # start level from zero
+>>>>>>> branch 'master' of https://github.com/omidziaee/DataStructure.git
             keep_deque.append((begin_word, 0))
             already_seen = {beginWord: True} 
             while keep_deque:
