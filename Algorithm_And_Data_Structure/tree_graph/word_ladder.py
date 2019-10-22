@@ -48,14 +48,15 @@ class Solution(object):
         def dfs(graph, end_word, begin_word):
             import collections
             keep_deque = collections.deque()
-            keep_deque.append((begin_word, 1))
+            # start level from zero
+            keep_deque.append((begin_word, 0))
             already_seen = {beginWord: True} 
             while keep_deque:
                 node, level = keep_deque.popleft()
+                if node == end_word:
+                    return level + 1
                 for i in range(len(node)):
                     key = node[:i] + "_" + node[i + 1:]
-                    if node == end_word:
-                        return level + 1
                     for neighbor in graph[key]:
                         if neighbor not in already_seen:
                             keep_deque.append((neighbor, level + 1))
