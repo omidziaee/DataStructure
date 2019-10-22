@@ -64,7 +64,7 @@ class Solution(object):
         row_B, col_B = len(B), len(B[0])
         res = [[0 for _ in range(col_B)] for _ in range(row_A)]
         for i in range(row_A):
-            for j in range(col_B):
+            for j in range(col_B): 
                 sum_mul = 0
                 for k in range(col_A):
                     if A[i][k] and B[k][j]:
