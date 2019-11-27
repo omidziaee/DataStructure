@@ -51,6 +51,6 @@ class Solution():
                 + self.helper(grid, seen, row, col + 1)\
                 + self.helper(grid, seen, row, col - 1)
                 
-grid = [[1,1,0], [1,1,0], [0,0,0]]
+grid = [[1,0,0], [0,0,0], [0,0,0]]
 sol = Solution()
 print sol.maxAreaOfIsland(grid)
