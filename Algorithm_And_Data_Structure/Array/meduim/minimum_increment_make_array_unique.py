@@ -58,7 +58,9 @@ class Solution(object):
         repeated_items = []
         ans = 0
         # As the question said the maximum number in A is less than 10000
-        for i in range(100000):
+        if not A:
+            return 0
+        for i in range(2 * (max(A) + 1)):
             if i in dic_counter:
                 if dic_counter[i] > 1:
                     repeated_items.extend([i] * (dic_counter[i] - 1))
@@ -71,7 +73,7 @@ class Solution(object):
         :type A: List[int]
         :rtype: int
         """
-        counter = [0 for _ in range(100000)]
+        counter = [0 for _ in range(2 * (max(A) + 1))]
         for elem in A:
             counter[elem] += 1
         ans, taken = 0, 0
@@ -85,6 +87,6 @@ class Solution(object):
         return ans
                 
 
-A = [3,2,1,2,1,7,2]   
+A = [1,1,1,1,1,1]   
 sol = Solution()
 print sol.minIncrementForUnique(A)
